@@ -13,6 +13,10 @@ brew install --cask viewer12/tap/nexus-shell
 - Apple Silicon Mac
 - macOS 14.2 or later
 
+## When the remote editor cannot connect
+
+If Terminal can connect but VS Code Remote-SSH hangs, use the [Mac SSH troubleshooting and SFTP fallback guide](docs/vscode-remote-ssh-fallback.md) to separate login problems from remote editor startup, inspect a Linux host, and continue a small file task. It includes primary-source diagnostics and clear limits on what a terminal workspace replaces.
+
 ## Free SSH tools
 
 Try the free [SSH tunnel command builder](https://nexusshell.app/en/tools/ssh-tunnel-command-builder/?utm_source=github-releases&utm_medium=repository&utm_campaign=private_database_202609) to reach a private database or web service with system OpenSSH. The [Mac tunnel walkthrough](docs/ssh-tunnel-workflow.md) explains local and remote addresses, verification and how to stop the connection. Nexus Shell can handle the accompanying server terminal and file work; the builder does not configure an app tunnel manager.
