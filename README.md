@@ -2,7 +2,19 @@
 
 [Nexus Shell](https://nexusshell.app/) is a native macOS SSH client for managing server connections, terminal sessions, files, containers, and monitoring from one app.
 
-This repository hosts signed and notarized Nexus Shell releases. Download the latest installer from [GitHub Releases](https://github.com/viewer12/Nexus-Shell-Releases/releases) or install with Homebrew:
+This repository hosts signed and notarized Nexus Shell releases. Nexus Shell is also available on the [Mac App Store](https://apps.apple.com/cn/app/nexus-shell/id6780150323?mt=12).
+
+## Choose your edition
+
+| | Website / Homebrew | Mac App Store |
+|---|---|---|
+| Pro purchase | One-time lifetime purchase only | Lifetime or auto-renewing annual subscription; see store pricing |
+| Account | Nexus Shell account for Pro and website trial | Apple Account; no Nexus Shell account required |
+| Agent Bridge | Available | Not included |
+
+Purchases and data are managed separately between channels; connection profiles do not migrate automatically. See the [official edition comparison](https://nexusshell.app/en/?utm_source=github-releases&utm_medium=repository&utm_campaign=store_editions_202609#download-options) before purchasing.
+
+For the website edition, download the latest installer from [GitHub Releases](https://github.com/viewer12/Nexus-Shell-Releases/releases) or install with Homebrew:
 
 ```bash
 brew install --cask viewer12/tap/nexus-shell
