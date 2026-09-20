@@ -29,6 +29,8 @@ Choose your next server task in the [Mac SSH guides and tools](https://nexusshel
 
 ## When the remote editor cannot connect
 
+If SSH stops with **Too many authentication failures**, use the [Mac SSH key-selection walkthrough and isolated fixture](docs/ssh-key-selection-on-mac.md). Inspect which keys OpenSSH selects, account for overlapping config rules, and keep agent-held private keys in their existing store. The fixture resolves example settings without logging in to a server.
+
 For a NAS or homelab connection that reports **No route to host**, start with the [Mac SSH symptom picker and connection checklist](https://nexusshell.app/en/guides/fix-mac-ssh-no-route-to-host/?utm_source=github-releases&utm_medium=repository&utm_campaign=mac_lan_ssh_202609). Compare Apple Terminal with the failing app and separate Local Network permission, routing, port and authentication errors. The picker runs in the page without asking for server details or credentials.
 
 If Terminal can connect but VS Code Remote-SSH hangs, use the [Mac SSH troubleshooting and SFTP fallback guide](docs/vscode-remote-ssh-fallback.md) to separate login problems from remote editor startup, inspect a Linux host, and continue a small file task. It includes primary-source diagnostics and clear limits on what a terminal workspace replaces.
