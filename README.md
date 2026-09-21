@@ -37,7 +37,7 @@ If Terminal can connect but VS Code Remote-SSH hangs, use the [Mac SSH troublesh
 
 ## Free SSH tools
 
-Try the free [SSH tunnel command builder](https://nexusshell.app/en/tools/ssh-tunnel-command-builder/?utm_source=github-releases&utm_medium=repository&utm_campaign=private_database_202609) to reach a private database or web service with system OpenSSH. The [Mac tunnel walkthrough](docs/ssh-tunnel-workflow.md) explains local and remote addresses, verification and how to stop the connection. Nexus Shell can handle the accompanying server terminal and file work; the builder does not configure an app tunnel manager.
+Try the free [SSH tunnel command builder](https://nexusshell.app/en/tools/ssh-tunnel-command-builder/?utm_source=github-releases&utm_medium=repository&utm_campaign=private_database_202609) to reach a private database or web service with system OpenSSH. It includes a copyable client setup checklist. The [Mac tunnel walkthrough](docs/ssh-tunnel-workflow.md) covers Sequel Ace and DBeaver settings, separate SSH/database addresses, a read-only connection check and how to stop the tunnel. Nexus Shell can handle the accompanying server terminal and file work; the builder does not configure an app tunnel manager.
 
 ## Agent Bridge
 
