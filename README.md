@@ -22,6 +22,8 @@ brew install --cask viewer12/tap/nexus-shell
 
 Choose your next server task in the [Mac SSH guides and tools](https://nexusshell.app/en/guides/?utm_source=github-releases&utm_medium=repository&utm_campaign=task_hub_202609): remote file editing, Docker diagnostics, database tunnels, agent setup and managed Mac deployment.
 
+Docker reports **no space left on device**? Use the [read-only disk-space checklist](docs/docker-disk-space-checklist.md) to distinguish filesystem capacity, inode exhaustion and VM/LXC allocation before deleting anything. It links to an interactive checklist and the Mac remote-Docker workflow.
+
 ## Requirements
 
 - Apple Silicon Mac
