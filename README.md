@@ -26,6 +26,8 @@ Docker reports **no space left on device**? Use the [read-only disk-space checkl
 
 ## Requirements
 
+Moving from Windows? Use the [WinSCP-to-Mac migration checklist](docs/winscp-to-mac.md) to check SFTP versus FTPS, convert a PuTTY key locally if needed, and validate one file task before moving the rest of your connections.
+
 - Apple Silicon Mac
 - macOS 14.2 or later
 
