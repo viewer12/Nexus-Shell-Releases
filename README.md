@@ -24,6 +24,10 @@ Choose your next server task in the [Mac SSH guides and tools](https://nexusshel
 
 Docker reports **no space left on device**? Use the [read-only disk-space checklist](docs/docker-disk-space-checklist.md) to distinguish filesystem capacity, inode exhaustion and VM/LXC allocation before deleting anything. It links to an interactive checklist and the Mac remote-Docker workflow.
 
+## Moving from WinSCP
+
+Moving from Windows? Use the [WinSCP-to-Mac migration checklist](docs/winscp-to-mac.md) to check SFTP versus FTPS, convert a PuTTY key locally if needed, and validate one file task before moving the rest of your connections.
+
 ## Requirements
 
 - Apple Silicon Mac
