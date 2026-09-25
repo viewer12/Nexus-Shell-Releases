@@ -28,6 +28,8 @@ Docker reports **no space left on device**? Use the [read-only disk-space checkl
 
 Moving from Windows? Use the [WinSCP-to-Mac migration checklist](docs/winscp-to-mac.md) to check SFTP versus FTPS, convert a PuTTY key locally if needed, and validate one file task before moving the rest of your connections.
 
+Working with two servers? Follow the [multi-server file checklist](docs/multi-server-files.md) ([中文操作说明](docs/zh-CN/multi-server-files.md)) to stage a copy through your Mac, verify the target, and distinguish session tabs from terminal splits. It also explains the path bar's editing shortcuts.
+
 ## Requirements
 
 - Apple Silicon Mac
