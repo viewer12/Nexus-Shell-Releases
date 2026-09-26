@@ -45,6 +45,8 @@ If Terminal can connect but VS Code Remote-SSH hangs, use the [Mac SSH troublesh
 
 ## Free SSH tools
 
+Running a long job before closing your Mac? Use the [remote job continuity checklist](docs/remote-jobs.md) ([中文操作说明](docs/zh-CN/remote-jobs.md)) to start remote tmux, detach, reconnect and inspect the original task. It includes a harmless rehearsal and explains why SSH reconnect, file-transfer recovery and local tunnels are separate concerns.
+
 SSH connects, but **saving a file fails**? Follow the [SFTP write-permission checklist and local experiment](docs/sftp-write-permissions.md). It demonstrates why a writable file can still fail during temporary-file creation or rename, and explains the website edition's remote-shell requirement.
 
 Try the free [SSH tunnel command builder](https://nexusshell.app/en/tools/ssh-tunnel-command-builder/?utm_source=github-releases&utm_medium=repository&utm_campaign=private_database_202609) to reach a private database or web service with system OpenSSH. It includes a copyable client setup checklist. The [Mac tunnel walkthrough](docs/ssh-tunnel-workflow.md) covers Sequel Ace and DBeaver settings, separate SSH/database addresses, a read-only connection check and how to stop the tunnel. Nexus Shell can handle the accompanying server terminal and file work; the builder does not configure an app tunnel manager.
