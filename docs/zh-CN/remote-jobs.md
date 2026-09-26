@@ -61,4 +61,10 @@ tmux attach-session -t maintenance
 
 Nexus Shell 要求 Apple Silicon 和 macOS 14.2+。个人非商业 SSH 有免费层；tmux 是独立的服务器工具，并非必须购买 Pro 才能使用。SFTP、Docker 管理和监控属于 Pro 功能。[官网 Pro](https://nexusshell.app/?utm_source=github-releases&utm_medium=repository&utm_campaign=remote_jobs_202609#pricing) 仅提供 lifetime 买断；App Store 提供 lifetime 和自动续费年付，无 Nexus Shell 账号及 Agent Bridge。两渠道的购买和数据分别管理，连接配置不会自动迁移。
 
-依据：[tmux 入门文档](https://github.com/tmux/tmux/wiki/Getting-Started)、[命令手册](https://man.openbsd.org/tmux)。本次只单独执行验证了计数脚本，不声称已验证你服务器上的完整断线恢复或物理休眠过程。
+## 可复现的本地验证
+
+9月26日使用 tmux 3.7c，在独立 socket 和伪终端中执行了脱离、重新挂接测试：原面板进程不变，计数由第1次推进到第2次，最终30次全部完成。没有读取用户的 tmux 配置，也没有建立 SSH 连接。验证脚本只清理自己创建的 tmux server。
+
+[英文复现步骤及依赖](../remote-jobs.md#reproduce-the-local-continuity-check) · [测试脚本](../../examples/verify-tmux-continuity.mjs) · [记录结果](../fixtures/remote-job-continuity-result.json)。脚本需要本地 macOS、Node.js 18+、/usr/bin/python3 和已有 tmux；先阅读再执行。它会从官网读取上面的计数示例并在本地运行，不安装软件。
+
+这证明本地 tmux 会话连续性，不等于已验证客户服务器的断网恢复、真实业务任务或 Mac 物理休眠。远程步骤依据：[tmux 入门文档](https://github.com/tmux/tmux/wiki/Getting-Started)、[命令手册](https://man.openbsd.org/tmux)。

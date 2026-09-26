@@ -1,0 +1,13 @@
+{
+  "version": "tmux 3.7c",
+  "localPTY": true,
+  "clientDetachReattach": true,
+  "samePanePID": true,
+  "beforeDetachTick": 1,
+  "afterReattachTick": 2,
+  "completedTicks": 30,
+  "finished": true,
+  "sshDisconnectTest": false,
+  "physicalSleepTest": false,
+  "defaultTmuxSocketUntouched": true
+}

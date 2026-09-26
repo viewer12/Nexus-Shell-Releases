@@ -35,4 +35,16 @@ If the session is missing, check the host/user, whether the session exited, a se
 
 Nexus Shell requires Apple Silicon and macOS 14.2+. Its free tier covers personal, non-commercial SSH use. Website Pro is lifetime only; [review current website terms](https://nexusshell.app/en/?utm_source=github-releases&utm_medium=repository&utm_campaign=remote_jobs_202609#pricing). The App Store offers lifetime and auto-renewing annual options, without a Nexus Shell account or Agent Bridge. Purchases/data are managed separately and connections do not migrate automatically.
 
-Sources: [tmux Getting Started](https://github.com/tmux/tmux/wiki/Getting-Started), [tmux manual](https://man.openbsd.org/tmux). The counter's shell execution is checked separately; this document does not claim a physical sleep/disconnect test on your server.
+## Reproduce the local continuity check
+
+The [test script](../examples/verify-tmux-continuity.mjs) uses an isolated local tmux socket, starts the guide's one-minute counter, attaches through a pseudo-terminal, sends the default detach keys, and attaches a new client. It checks that the original pane process persists, the counter advances and all 30 ticks finish. Its cleanup stops only its own tmux server. It does not install anything or open an SSH connection.
+
+Prerequisites: macOS, Node.js 18+ with fetch, /usr/bin/python3 and an existing tmux executable. Read the script before running it from this repository:
+
+```sh
+node examples/verify-tmux-continuity.mjs "$(command -v tmux)"
+```
+
+The script reads the counter from the public official guide over HTTPS and executes that small shell exercise locally. September 26 verification with tmux 3.7c: same pane process, tick 1 before detach and tick 2 after reattach, all 30 ticks complete. See the [recorded result](fixtures/remote-job-continuity-result.json).
+
+This is local session verification, not a network outage, a customer's server, a real job's recovery or a physical Mac sleep test. Sources for the remote workflow: [tmux Getting Started](https://github.com/tmux/tmux/wiki/Getting-Started), [tmux manual](https://man.openbsd.org/tmux).
