@@ -35,6 +35,12 @@ Working with two servers? Follow the [multi-server file checklist](docs/multi-se
 - Apple Silicon Mac
 - macOS 14.2 or later
 
+## Evaluating a Mac SSH client
+
+Use the [workflow comparison and pre-purchase checklist](https://nexusshell.app/en/compare?utm_source=github-releases&utm_medium=repository&utm_campaign=client_fit_202609#before-switching) to decide whether an integrated server workbench fits your task. Keep your existing client while checking one non-critical server: key and jump-host login, a disposable file edit, and container/log access if you use Docker. Nexus Shell has session tabs rather than terminal split panes; its file columns show your Mac and one remote server.
+
+Basic SSH is free for personal, non-commercial use. SFTP, Docker and monitoring require Pro or an eligible trial; eligible new website accounts get seven days without a card or automatic charge. Website Pro remains lifetime-only. The App Store offers lifetime and auto-renewing annual Pro. Current prices differ; website lifetime alignment is planned, with no new amount or effective date specified here. Do not assume automatic connection import or cross-channel purchase transfer.
+
 ## When the remote editor cannot connect
 
 If SSH stops with **Too many authentication failures**, use the [Mac SSH key-selection walkthrough and isolated fixture](docs/ssh-key-selection-on-mac.md). Inspect which keys OpenSSH selects, account for overlapping config rules, and keep agent-held private keys in their existing store. The fixture resolves example settings without logging in to a server.
