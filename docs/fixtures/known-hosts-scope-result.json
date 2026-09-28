@@ -1,0 +1,14 @@
+{
+  "time": "2026-09-28T00:05:58.356Z",
+  "platform": "darwin",
+  "checks": [
+    "Different disposable host keys have different SHA256 fingerprints",
+    "The exact nondefault host:port can be found even when names are hashed",
+    "Removing the verified host:port removes its hashed old entry",
+    "The same hostname at port 22 and the unrelated host are preserved",
+    "The tool backup contains the removed record",
+    "After a fixture-only verified replacement, lookup returns the new key"
+  ],
+  "passed": 6,
+  "scope": "Offline disposable known_hosts fixture; no network, app GUI, customer host or user SSH files tested"
+}
