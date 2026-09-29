@@ -101,6 +101,7 @@ Agent Bridge does not expose tools for changing Nexus Shell settings or creating
 
 ## Links
 
+- [Media and review kit](docs/media-kit.md): official product facts, versioned screenshots, icon and promotional video for Mac software writers.
 - [Agent Bridge documentation](https://nexusshell.app/agent-bridge)
 - [Release notes](https://nexusshell.app/releases)
 - [Telegram release channel](https://t.me/nexusshell)
