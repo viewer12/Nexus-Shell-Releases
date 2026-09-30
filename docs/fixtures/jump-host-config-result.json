@@ -1,0 +1,16 @@
+{
+  "date": "2026-09-30T00:07:04.394Z",
+  "scope": "Isolated ssh -G configuration evaluation; no server, credentials, network session or app GUI test",
+  "checks": [
+    "jump endpoint/account/port",
+    "target endpoint/account/port",
+    "target selects jump alias",
+    "jump key selection",
+    "target key selection",
+    "explicit key selection",
+    "no agent forwarding",
+    "no external agent",
+    "host verification retained"
+  ],
+  "passed": 9
+}
