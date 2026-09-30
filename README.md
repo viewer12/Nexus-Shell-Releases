@@ -43,6 +43,8 @@ Basic SSH is free for personal, non-commercial use. SFTP, Docker and monitoring 
 
 ## When the remote editor cannot connect
 
+Reaching a private server through a bastion? Use the [Mac jump-host setup and offline configuration check](docs/jump-host-on-mac.md) to keep each hop's account, port and key separate and distinguish forwarding policy from target authentication.
+
 Seeing **Server Fingerprint Changed** or **REMOTE HOST IDENTIFICATION HAS CHANGED**? Use the [host-key recovery checklist](docs/ssh-host-key-changed.md) ([中文说明](docs/zh-CN/ssh-host-key-changed.md)) to verify the destination before replacing a saved record. The included offline rehearsal checks hashed names and nondefault ports without touching your SSH files.
 
 If SSH stops with **Too many authentication failures**, use the [Mac SSH key-selection walkthrough and isolated fixture](docs/ssh-key-selection-on-mac.md). Inspect which keys OpenSSH selects, account for overlapping config rules, and keep agent-held private keys in their existing store. The fixture resolves example settings without logging in to a server.
