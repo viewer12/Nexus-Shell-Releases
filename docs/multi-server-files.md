@@ -1,12 +1,12 @@
 # Files across two servers from a Mac
 
-[中文操作说明](zh-CN/multi-server-files.md) · Applies to Nexus Shell 1.7.7 · Updated September 25, 2026
+[中文操作说明](zh-CN/multi-server-files.md) · Applies to Nexus Shell 1.7.8, with older-version notes · Updated October 1, 2026
 
 Nexus Shell combines SSH session tabs and a local/remote Files view. For an occasional file copy between servers, download from the source to your Mac, then upload that copy to the destination. This is a staged copy through your Mac, not a direct server-to-server transfer.
 
 ## Check whether this is your workflow
 
-| Need | Nexus Shell 1.7.7 behavior |
+| Need | Nexus Shell 1.7.8 behavior |
 | --- | --- |
 | Keep several SSH sessions open | Use session tabs; confirm the active server before entering commands. |
 | Browse files side by side | Files shows a local Mac pane and one selected remote server. |
@@ -29,9 +29,13 @@ The local copy remains on your Mac. Consider available disk space and whether yo
 
 ## Edit a path closer to where you are looking
 
-In the Files path bar, right-click the breadcrumb area and choose **Edit path**, or double-click the breadcrumb area to enter editing. The pencil button is another entry point. Type the path and press Return; Escape cancels.
+In **1.7.8**, click the **empty area of the path bar** to enter editing. The pencil button now follows the path instead of sitting at the far edge; right-click → **Edit path** also remains available. Type the directory and press Return; Escape cancels. A single click on a named ancestor breadcrumb still navigates to that directory. Remote Files, the local pane and the terminal file sidebar use this distinction.
 
-A single click on an ancestor breadcrumb navigates to that directory. In the terminal's Files panel, the path breadcrumb also has a double-click and **Edit path** context-menu action. Labels follow the app's language. If a gesture does not reach the expected control, use the context menu or the full Files view's pencil button.
+In **1.7.7 and earlier**, use the pencil, right-click → Edit path, or double-click the breadcrumb area. Check your installed version first. The [website/GitHub 1.7.8 release](https://github.com/viewer12/Nexus-Shell-Releases/releases/tag/v1.7.8) confirms the new gesture; it does not establish App Store rollout in every region. Labels follow the app's language.
+
+Enter a directory for the selected pane and server: a Mac path belongs in the local pane, while the remote pane needs a path visible to that server account. Restricted SFTP accounts may expose a different root. If opening it fails, verify the server, path and permissions. The editing gesture does not grant access or create a missing folder.
+
+The gesture descriptions were checked against the released v1.7.8 source and release notes. This document is not a fresh GUI or two-server end-to-end test.
 
 ## Choose the right transfer route
 
