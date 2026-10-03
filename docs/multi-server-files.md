@@ -1,6 +1,6 @@
 # Files across two servers from a Mac
 
-[中文操作说明](zh-CN/multi-server-files.md) · Applies to Nexus Shell 1.7.8, with older-version notes · Updated October 1, 2026
+[中文操作说明](zh-CN/multi-server-files.md) · Applies to Nexus Shell 1.7.8, with older-version notes · Updated October 4, 2026
 
 Nexus Shell combines SSH session tabs and a local/remote Files view. For an occasional file copy between servers, download from the source to your Mac, then upload that copy to the destination. This is a staged copy through your Mac, not a direct server-to-server transfer.
 
@@ -15,6 +15,8 @@ Nexus Shell combines SSH session tabs and a local/remote Files view. For an occa
 | Repeat deployments or mirror directory trees | Use a separately validated deployment/synchronization workflow; copying files is not deployment automation. |
 
 ## Complete one small transfer
+
+Need harmless files to start? Use the [free round-trip test pack](sftp-transfer-check.md) to check spaces, Chinese filenames, hidden/empty files and binary bytes, with an unchanged checksum baseline.
 
 Use a harmless test file and directories you own before handling a live configuration. You need permission to read the source and create the destination file, as well as SFTP access to both servers.
 

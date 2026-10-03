@@ -1,0 +1,43 @@
+{
+  "scope": "Offline ZIP and macOS shasum checks, not a server/app transfer",
+  "sha256": "8fb01dafb0893b5edad5b84929db8731a9d8f94bf42ac65d0acde9818786b544",
+  "payload_files": 5,
+  "cases": [
+    {
+      "case": "clean-local-copy",
+      "expected_checksum_pass": true,
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "case": "missing-hidden-file",
+      "expected_checksum_pass": false,
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "case": "changed-unicode-content",
+      "expected_checksum_pass": false,
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "case": "nonempty-empty-file",
+      "expected_checksum_pass": false,
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "case": "truncated-binary",
+      "expected_checksum_pass": false,
+      "exit_code": 1,
+      "passed": true
+    },
+    {
+      "case": "extra-file-not-covered",
+      "expected_checksum_pass": true,
+      "exit_code": 0,
+      "passed": true
+    }
+  ]
+}
