@@ -1,6 +1,6 @@
 # Check one SFTP round trip before moving real files
 
-Nexus Shell team · October 4, 2026 · [中文](zh-CN/sftp-transfer-check.md)
+Nexus Shell team · Published October 4, 2026 · Updated October 7, 2026 · [中文](zh-CN/sftp-transfer-check.md)
 
 [Download the free test ZIP](https://nexusshell.app/assets/downloads/sftp-transfer-check.zip). Five synthetic files cover spaces, a Chinese filename and UTF-8 text, a hidden dotfile, an empty file and binary bytes. A SHA-256 manifest and English/Chinese instructions are included. This works with any SFTP client, is not an installer and contains no credentials or executable payloads. Test data is CC0-1.0.
 
@@ -13,6 +13,12 @@ ZIP SHA-256: `8fb01dafb0893b5edad5b84929db8731a9d8f94bf42ac65d0acde9818786b544`.
 5. Verify required permissions separately. Remove only your disposable copies when finished; no cleanup command is provided.
 
 No remote shell is needed: checks run on the Mac after download, including for SFTP-only accounts. Matching hashes prove the five listed files' bytes, not permissions, ownership, ACLs, extra files, empty directories, symlinks, server identity, large-transfer or resume reliability. This tiny fixture is not a speed benchmark, GUI test or server compatibility certification. A manifest changed alongside the data cannot prove the expected original content.
+
+## Check in your browser instead
+
+Open the [local test-file checker](https://nexusshell.app/en/guides/winscp-alternative-for-mac/?utm_source=github-releases&utm_medium=repository&utm_campaign=multi_server_files_202609#transfer-check). Select all five payload files from the separate **downloaded** copy, not the original folder or ZIP. In the Mac file picker, Command + Shift + . shows hidden files. Use only the synthetic test data.
+
+The checker reports missing, changed, unreadable and duplicate names. It uses the fixed original hashes, so selecting a changed SHA256SUMS cannot redefine the baseline. It does not upload file contents or hashes. Other selected files, including README and the manifest, are explicitly unchecked. Clear selection removes the displayed results. A passing result only verifies the five selected files' bytes; the limits above still apply. Without JavaScript or browser hashing support, use the Terminal command.
 
 ## Reproduce the offline validation
 
