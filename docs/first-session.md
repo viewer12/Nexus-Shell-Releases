@@ -2,6 +2,8 @@
 
 Nexus Shell team · October 5, 2026 · [中文](zh-CN/first-session.md)
 
+Japanese and Korean editions added October 8, 2026: [日本語](ja/first-session.md) · [한국어](ko/first-session.md).
+
 For the **website / Homebrew edition**, checked against release v1.7.9. You need an Apple Silicon Mac running macOS 14.2 or later and a server you are authorized to access. Installing a client does not provide a VPS or server account.
 
 ## Finish signing in inside the app

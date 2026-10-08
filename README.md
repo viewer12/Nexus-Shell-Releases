@@ -26,7 +26,7 @@ Docker reports **no space left on device**? Use the [read-only disk-space checkl
 
 ## First time using Nexus Shell?
 
-Follow the [first-session checklist](docs/first-session.md) ([中文](docs/zh-CN/first-session.md)) to finish website-edition sign-in inside the app, confirm your trial status and verify one server task. Website registration alone is not an app session; App Store users follow Apple's purchase/restore flow instead.
+Follow the [first-session checklist](docs/first-session.md) ([中文](docs/zh-CN/first-session.md) · [日本語](docs/ja/first-session.md) · [한국어](docs/ko/first-session.md)) to finish website-edition sign-in inside the app, confirm your trial status and verify one server task. Website registration alone is not an app session; App Store users follow Apple's purchase/restore flow instead.
 
 ## Moving from WinSCP
 
