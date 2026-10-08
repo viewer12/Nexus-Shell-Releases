@@ -2,6 +2,8 @@
 
 Nexus Shell 团队 · 2026年10月5日 · [English](../first-session.md)
 
+2026年10月8日新增：[日本語](../ja/first-session.md) · [한국어](../ko/first-session.md)。
+
 应用登录步骤适用于**官网 / Homebrew 版**，按v1.7.9发布源码核对。需要Apple Silicon Mac、macOS 14.2以上，以及你有权访问的服务器。安装客户端不会附赠VPS或服务器账号。
 
 ## 在应用中完成账号登录
