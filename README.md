@@ -28,6 +28,8 @@ Docker reports **no space left on device**? Use the [read-only disk-space checkl
 
 Follow the [first-session checklist](docs/first-session.md) ([中文](docs/zh-CN/first-session.md) · [日本語](docs/ja/first-session.md) · [한국어](docs/ko/first-session.md)) to finish website-edition sign-in inside the app, confirm your trial status and verify one server task. Website registration alone is not an app session; App Store users follow Apple's purchase/restore flow instead.
 
+Typing Shift symbols with a Chinese or Japanese input method? The website / Homebrew v1.7.10 release fixes symbols occasionally needing two presses. [Check terminal input](docs/terminal-input-check.md) ([中文](docs/zh-CN/terminal-input-check.md) · [日本語](docs/ja/terminal-input-check.md)) to distinguish this from keyboard layout, password echo and paste problems.
+
 ## Moving from WinSCP
 
 Moving from Windows? Use the [WinSCP-to-Mac migration checklist](docs/winscp-to-mac.md) to check SFTP versus FTPS, convert a PuTTY key locally if needed, and validate one file task before moving the rest of your connections.

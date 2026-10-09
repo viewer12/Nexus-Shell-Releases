@@ -30,6 +30,8 @@ Nexus Shell 团队 · 2026年10月5日 · [English](../first-session.md)
 
 ## 需要帮助时
 
+中、日文输入法下，Shift 符号偶尔需要按两次时，查看官网 / Homebrew v1.7.10 修复与[终端输入检查清单](terminal-input-check.md)，区分键盘布局、密码不回显和粘贴问题。
+
 提供应用版本、macOS版本、安装渠道、失败步骤和脱敏错误即可。不要提供SSH密码、私钥、回调网址、令牌或完整终端历史。截图分享前检查主机名、用户名和无关文件。[支持入口](https://nexusshell.app/contact?utm_source=github-releases&utm_medium=repository&utm_campaign=first_session_202610)。
 
 本清单按发布源码核对，不代表本次完成了真实服务器、应用GUI或真实购买测试。文档不收集账号、服务器资料或诊断上传。
