@@ -28,4 +28,6 @@ Nexus Shell チーム · 2026年10月8日 · [English](../first-session.md) · [
 
 ## 困ったとき
 
+日本語・中国語入力中にShift記号が時々2回押さないと入力できない場合は、公式サイト / Homebrew v1.7.10の修正と[入力チェックリスト](terminal-input-check.md)を確認してください。配列、パスワードの非表示、貼り付けの問題を切り分けられます。
+
 アプリとmacOSのバージョン、インストール元、失敗した手順、機密情報を伏せたエラーを添えて[サポートへ](https://nexusshell.app/ja/contact?utm_source=github-releases&utm_medium=repository&utm_campaign=first_session_202610)。SSHパスワード、秘密鍵、コールバックURL、トークン、端末の全履歴は送らないでください。スクリーンショットのホスト名、ユーザー名、無関係なファイルにも注意してください。

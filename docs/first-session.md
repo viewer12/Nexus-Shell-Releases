@@ -30,6 +30,8 @@ Inspect the result before calling the task complete. A trial badge, download or 
 
 ## If you need help
 
+If Shift symbols sometimes need two presses with Chinese or Japanese input active, check the website / Homebrew v1.7.10 fix and [terminal input checklist](terminal-input-check.md). It separates this issue from keyboard layout, password echo and pasted text.
+
 Include app version, macOS version, installation channel, the failed step and a redacted error. Do not include SSH passwords, private keys, callback URLs, tokens or full terminal history. Check screenshots for hostnames, usernames and unrelated files. [Support options](https://nexusshell.app/en/contact?utm_source=github-releases&utm_medium=repository&utm_campaign=first_session_202610).
 
 This is a source-checked checklist, not a fresh live-server, app GUI or purchase test. This document collects no account, server details or diagnostic upload.
