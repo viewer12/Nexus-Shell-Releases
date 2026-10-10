@@ -1,0 +1,14 @@
+{
+  "checkedAt": "2026-10-10T00:07:04.223Z",
+  "version": "tmux 3.7c",
+  "plainPrefixMatchesBackupOld": true,
+  "exactMissingBackupFails": true,
+  "exactMaintenanceExists": true,
+  "controlModeClients": 2,
+  "switchClientChangesOnlyCurrentClient": true,
+  "bothPaneProcessesPreserved": true,
+  "noReplacementSessionCreated": true,
+  "defaultSocketUntouched": true,
+  "sshOutageTest": false,
+  "physicalSleepTest": false
+}

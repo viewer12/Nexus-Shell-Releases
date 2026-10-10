@@ -1,6 +1,6 @@
 # Mac 休眠或 SSH 断线后，继续之前的远程任务
 
-[English checklist](../remote-jobs.md) · 2026-09-26 核对 · Nexus Shell 1.7.7
+[English checklist](../remote-jobs.md) · 连续性测试：2026-09-26 · 接回命令核对：2026-10-10
 
 重新连接服务器，不代表原来的命令还在运行。要让 Linux 服务器上的交互式构建、导出或维护任务在 Mac 断开后继续，应当在**远程服务器的 tmux 会话里先启动任务**，回来后再连接同一服务器、同一远程账号，手动接回该会话。
 
@@ -41,8 +41,18 @@ printf 'rehearsal finished\n'
 hostname
 id -un
 tmux list-sessions
-tmux attach-session -t maintenance
+tmux has-session -t '=maintenance'
 ```
+
+先核对主机和账号。如果 has-session 报错，停下来查看会话列表，不要新建另一份备份或部署。检查通过后再运行：
+
+```sh
+tmux attach-session -t '=maintenance'
+```
+
+等号要求精确匹配会话名；不加等号时，backup 可能匹配到 backup-old。若已经在同一服务器的 tmux 内，用 `tmux switch-client -t '=maintenance'` 切换当前客户端，避免嵌套挂接。这两种命令都不强制踢掉其他客户端；共享会话输入前应先协调。
+
+[在浏览器本地生成精确接回命令](https://nexusshell.app/en/guides/keep-remote-jobs-running-after-mac-sleep/?utm_source=github-releases&utm_medium=repository&utm_campaign=remote_jobs_202609#build-the-return-command-for-an-existing-session)。工具只生成文本，不检查服务器、不重启任务、不保存输入；超出英文字母、数字、下划线、连字符范围的会话名需要手动处理。
 
 计数应当继续推进，或已显示 rehearsal finished。实际任务还要检查自己的日志、退出状态和结果；备份需要验证完整性或恢复能力，不能只看 tmux 会话还在。
 
@@ -62,6 +72,8 @@ tmux attach-session -t maintenance
 Nexus Shell 要求 Apple Silicon 和 macOS 14.2+。个人非商业 SSH 有免费层；tmux 是独立的服务器工具，并非必须购买 Pro 才能使用。SFTP、Docker 管理和监控属于 Pro 功能。[官网 Pro](https://nexusshell.app/?utm_source=github-releases&utm_medium=repository&utm_campaign=remote_jobs_202609#pricing) 仅提供 lifetime 买断；App Store 提供 lifetime 和自动续费年付，无 Nexus Shell 账号及 Agent Bridge。两渠道的购买和数据分别管理，连接配置不会自动迁移。
 
 ## 可复现的本地验证
+
+10月10日另做了精确目标实验：backup 匹配到 backup-old，而不存在的 '=backup' 明确失败；切换两个控制模式客户端中的一个后，另一个客户端和两个原面板进程均保留，没有新建替代会话。[记录结果](../fixtures/tmux-exact-target-result.json) · [独立 socket 测试脚本](../../examples/verify-tmux-exact-targets.mjs)。本地已有 tmux 和 Node.js 18+ 时，先阅读脚本，再从仓库根目录运行 `node examples/verify-tmux-exact-targets.mjs "$(command -v tmux)"`。它验证本地会话选择和客户端切换，不验证 SSH 断线、物理休眠或 Nexus Shell GUI。
 
 9月26日使用 tmux 3.7c，在独立 socket 和伪终端中执行了脱离、重新挂接测试：原面板进程不变，计数由第1次推进到第2次，最终30次全部完成。没有读取用户的 tmux 配置，也没有建立 SSH 连接。验证脚本只清理自己创建的 tmux server。
 
