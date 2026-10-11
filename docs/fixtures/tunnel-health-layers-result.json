@@ -1,0 +1,10 @@
+{
+  "observedAtUTC": "2026-10-11T00:05:30.334Z",
+  "scope": "Local Node TCP/HTTP fixtures; not SSH, real database, Nexus GUI or customer server verification",
+  "checks": [
+    {"case": "listener accepts TCP, backend unavailable", "tcpAccepted": true, "httpSucceeded": false},
+    {"case": "HTTP access denied", "curlExit": 0, "httpStatus": 403, "authenticatedSuccess": false},
+    {"case": "wrong service returns HTTP 200", "curlExit": 0, "httpStatus": 200, "expectedContent": false},
+    {"case": "expected fixture response", "curlExit": 0, "httpStatus": 200, "expectedContent": true}
+  ]
+}
