@@ -39,6 +39,36 @@ After login, run the read-only query `SELECT 1;`. A result of `1` confirms that 
 
 [Sequel Ace's own documentation](https://sequel-ace.com/get-started/remote-connection.html) describes external tunnels and sandbox limits involving SSH agents, files and helper programs. This workflow is not a diagnosis or guaranteed fix for every client/macOS update failure. See also [DBeaver's tunnel model](https://dbeaver.com/docs/dbeaver/SSH-Configuration/) and [fortrabbit's separate SSH/database host example](https://docs.fortrabbit.com/integrations/database-clients/sequel-ace).
 
+## Tunnel active does not establish service health
+
+Separate the local listener, SSH responsiveness and the intended service response. The builder now provides an error selector, an adapted listener command and a copyable verification checklist. It does not execute checks or declare your service healthy.
+
+Run this in a second local Mac Terminal for the PostgreSQL example (adapt the local port if changed):
+
+```sh
+lsof -nP -iTCP:15432 -sTCP:LISTEN
+```
+
+Confirm the expected SSH process and loopback binding; visibility depends on your account. If the port is occupied by another process, choose another port and update your client. Do not kill an unfamiliar process. A listener or successful TCP connect can coexist with an unavailable destination. Keepalive checks SSH responsiveness; [ExitOnForwardFailure checks forwarding setup](https://man.openbsd.org/ssh_config#ExitOnForwardFailure), not later connections to the destination.
+
+Run SELECT 1 in your authenticated SQL client, or PING in an authenticated Redis client if permitted. A refusal or timeout needs the service address and route checked from the SSH server; administratively prohibited needs its administrator to verify forwarding policy. Authentication or certificate errors need the correct service account and hostname, not weaker security settings.
+
+For a plain HTTP service, first choose a known read-only endpoint. This example uses / and local port 18080; adapt both before running it in a local Terminal:
+
+```sh
+curl --disable --noproxy '*' --connect-timeout 3 --max-time 5 --include 'http://127.0.0.1:18080/'
+```
+
+Inspect expected status and content. Without --fail, curl can exit 0 for HTTP 401/403/500. A 200 response from the wrong service is not success. This command ignores default curl config, bypasses HTTP proxies, bounds the wait and does not follow redirects. For HTTPS, use the service's supported hostname/certificate setup and retain verification; do not add --insecure.
+
+Reproduce the distinction without a server account:
+
+```sh
+node examples/verify-tunnel-health-layers.mjs
+```
+
+The [fixture](../examples/verify-tunnel-health-layers.mjs) binds only ephemeral loopback ports, creates a Node TCP relay with a stopped backend and checks HTTP 403, wrong-service 200 and expected-content 200 responses. It requires Node.js 22+ and curl. It cleans up only its own listeners and sockets. The [recorded result](fixtures/tunnel-health-layers-result.json) is dated 2026-10-11. This is not an SSH handshake, real database, customer VPS, macOS sleep or Nexus GUI test. [Chinese steps](zh-CN/ssh-tunnel-workflow.md) explain the same scope.
+
 ## Continue the server task
 
 Nexus Shell complements your database client with saved SSH connections, terminal sessions, SFTP and Docker inspection. The generated command uses system OpenSSH; this document does not claim a Nexus Shell tunnel-manager feature. The app requires Apple Silicon and macOS 14.2+. Free use is personal and non-commercial; Pro features and commercial use retain their licensing requirements.
