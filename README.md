@@ -61,6 +61,8 @@ If Terminal can connect but VS Code Remote-SSH hangs, use the [Mac SSH troublesh
 
 ## Free SSH tools
 
+Using a Mac for your first SFTP deployment? The [Japanese path and round-trip checklist](docs/ja/sftp-transfer-check.md) separates local and remote folders, uses the existing free test pack, and explains what a successful checksum does and does not verify. Start with a disposable directory before changing a live site.
+
 Running a long job before closing your Mac? Use the [remote job continuity checklist](docs/remote-jobs.md) ([中文操作说明](docs/zh-CN/remote-jobs.md)) to start remote tmux, detach, reconnect and inspect the original task. It includes a harmless rehearsal, exact-name return commands and a browser-local command builder. It explains why SSH reconnect, file-transfer recovery and local tunnels are separate concerns.
 
 SSH connects, but **saving a file fails**? Follow the [SFTP write-permission checklist and local experiment](docs/sftp-write-permissions.md). It demonstrates why a writable file can still fail during temporary-file creation or rename, and explains the website edition's remote-shell requirement.
