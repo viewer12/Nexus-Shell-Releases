@@ -6,6 +6,8 @@ Nexus Shell team · Published October 4, 2026 · Updated October 7, 2026 · [中
 
 ZIP SHA-256: `8fb01dafb0893b5edad5b84929db8731a9d8f94bf42ac65d0acde9818786b544`.
 
+[日本語の保存先・往復転送チェック](ja/sftp-transfer-check.md) added October 12, 2026. Distinguish the Mac folder from the remote path before an upload: interactive OpenSSH SFTP uses `pwd` / `cd` for the server and `lpwd` / `lcd` for the Mac. Relative paths start at the corresponding current directory. A restricted account's `/` need not be the server's filesystem root. The original ZIP and its hash are unchanged; this is additional task guidance, not a new server or GUI test.
+
 1. Extract into a fresh Mac folder. Retain this unchanged original as the baseline.
 2. Upload the whole extracted folder to a new disposable directory your server account owns. Include the hidden file; do not upload only the ZIP or use a live service directory.
 3. Download the remote folder to a different empty Mac directory. Do not merge with the original: leftover files can hide a missing download.

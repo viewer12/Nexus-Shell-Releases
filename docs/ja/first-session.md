@@ -20,7 +20,7 @@ Nexus Shell チーム · 2026年10月8日 · [English](../first-session.md) · [
 
 `uptime`などの読み取り専用コマンドで、意図したサーバーであることを確認します。接続できない場合は[接続チェックリスト（英語）](https://nexusshell.app/en/guides/fix-mac-ssh-no-route-to-host/?utm_source=github-releases&utm_medium=repository&utm_campaign=first_session_202610)で切り分けます。OpenSSHの別名、外部agent、他のクライアントの設定が自動移行するとは想定しないでください。
 
-- **ファイル：**[テストファイルの手順（英語）](../sftp-transfer-check.md)に従い、自分が書き込める新しいテストディレクトリへアップロードし、Macの別の空ディレクトリへダウンロードして元の値と照合します。SSH接続成功は書き込み権限の証明ではありません。外部編集にはリモートshellなどの追加条件があります。[権限の確認（英語）](../sftp-write-permissions.md)も参照してください。
+- **ファイル：**[保存先とテストファイルの手順（日本語、10月12日追加）](sftp-transfer-check.md)に従い、Mac側とサーバー側のパスを区別し、自分が書き込める新しいテストディレクトリへアップロードします。Macの別の空ディレクトリへダウンロードして元の値と照合します。SSH接続成功は書き込み権限の証明ではありません。外部編集にはリモートshellなどの追加条件があります。[権限の確認（英語）](../sftp-write-permissions.md)も参照してください。
 - **Docker：**[読み取り中心の手順（英語）](../docker-disk-space-checklist.md)でコンテナの状態と範囲を絞ったログを確認します。サーバー側の権限が必要です。試用のためにコンテナやボリュームを削除しないでください。
 - **長時間の処理：**切断後も継続する作業を任せる前に、[リモートtmuxの練習（英語）](../remote-jobs.md)を行います。
 
