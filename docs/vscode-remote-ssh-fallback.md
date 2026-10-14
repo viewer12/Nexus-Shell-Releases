@@ -16,6 +16,8 @@ Replace `my-server` with your own alias. Check that both clients use the intende
 
 If this also fails, resolve the address, VPN, authentication or server availability first. Switching editors will not repair those problems. If it succeeds, keep the session available and note the point where the editor stops.
 
+If the log instead stops at `kex_exchange_identification`, use the [pre-authentication checklist](ssh-preauth-check.md) before changing editor startup settings. A TCP connection can close before login; the included loopback experiment requires no server credentials.
+
 ## 2. Match the symptom before changing settings
 
 | What you observe | Next check |

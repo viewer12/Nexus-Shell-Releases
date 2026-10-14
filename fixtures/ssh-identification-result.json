@@ -1,0 +1,57 @@
+{
+  "checkedAt": "2026-10-14T00:06:01.025Z",
+  "client": "OpenSSH_10.3p1, LibreSSL 3.3.6",
+  "scope": "four temporary loopback TCP listeners; no real SSH daemon, credentials or Nexus Shell GUI",
+  "results": [
+    {
+      "case": "closed-before-version",
+      "acceptedConnections": 1,
+      "exitCode": 255,
+      "tcpConnected": true,
+      "remoteVersionReceived": false,
+      "authenticated": false,
+      "relevantOutput": [
+        "kex_exchange_identification: Connection closed by remote host\r",
+        "Connection closed by 127.0.0.1 port 55104\r"
+      ]
+    },
+    {
+      "case": "text-refusal",
+      "acceptedConnections": 1,
+      "exitCode": 255,
+      "tcpConnected": true,
+      "remoteVersionReceived": false,
+      "authenticated": false,
+      "relevantOutput": [
+        "debug1: kex_exchange_identification: banner line 0: Not allowed at this time\r",
+        "kex_exchange_identification: Connection closed by remote host\r",
+        "Connection closed by 127.0.0.1 port 55106\r"
+      ]
+    },
+    {
+      "case": "other-service",
+      "acceptedConnections": 1,
+      "exitCode": 255,
+      "tcpConnected": true,
+      "remoteVersionReceived": false,
+      "authenticated": false,
+      "relevantOutput": [
+        "debug1: kex_exchange_identification: banner line 0: HTTP/1.1 403 Forbidden\r",
+        "kex_exchange_identification: Connection closed by remote host\r",
+        "Connection closed by 127.0.0.1 port 55108\r"
+      ]
+    },
+    {
+      "case": "ssh-version-only",
+      "acceptedConnections": 1,
+      "exitCode": 255,
+      "tcpConnected": true,
+      "remoteVersionReceived": true,
+      "authenticated": false,
+      "relevantOutput": [
+        "debug1: Remote protocol version 2.0, remote software version NexusFixture_1.0\r",
+        "Connection closed by 127.0.0.1 port 55110\r"
+      ]
+    }
+  ]
+}
