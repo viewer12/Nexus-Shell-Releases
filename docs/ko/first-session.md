@@ -1,6 +1,6 @@
 # 다운로드 후 첫 서버 작업 확인하기
 
-Nexus Shell 팀 · 2026년 10월 8일 · [English](../first-session.md) · [中文](../zh-CN/first-session.md) · [日本語](../ja/first-session.md)
+Nexus Shell 팀 · 2026년 10월 8일 · 파일 작업 안내 갱신: 2026년 10월 15일 · [English](../first-session.md) · [中文](../zh-CN/first-session.md) · [日本語](../ja/first-session.md)
 
 로그인 단계는 **웹사이트 / Homebrew 버전 v1.7.9**를 기준으로 합니다. Apple Silicon Mac, macOS 14.2 이상, 접근 권한이 있는 서버가 필요합니다. 앱에 VPS나 서버 계정이 포함되는 것은 아닙니다.
 
@@ -20,7 +20,7 @@ Nexus Shell 팀 · 2026년 10월 8일 · [English](../first-session.md) · [中�
 
 `uptime` 같은 읽기 전용 명령으로 의도한 서버인지 확인하세요. 연결에 실패하면 [연결 점검표(영문)](https://nexusshell.app/en/guides/fix-mac-ssh-no-route-to-host/?utm_source=github-releases&utm_medium=repository&utm_campaign=first_session_202610)를 참고합니다. OpenSSH 별칭, 외부 agent, 다른 클라이언트의 설정이 자동으로 이전된다고 가정하지 마세요.
 
-- **파일:** [테스트 파일 안내(영문)](../sftp-transfer-check.md)에 따라 자신이 쓸 수 있는 새 테스트 디렉터리에 올린 뒤 Mac의 다른 빈 디렉터리로 내려받아 원본 값과 비교합니다. SSH 연결 성공이 파일 쓰기 권한을 보장하지 않습니다. 외부 편집에는 원격 shell 등 추가 조건이 있으므로 [권한 점검(영문)](../sftp-write-permissions.md)을 확인하세요.
+- **파일:** [저장 경로와 왕복 전송 점검(한국어)](sftp-transfer-check.md)에 따라 자신이 쓸 수 있는 새 테스트 디렉터리에 올린 뒤 Mac의 다른 빈 디렉터리로 내려받아 원본 값과 비교합니다. SSH 연결 성공이 파일 쓰기 권한을 보장하지 않습니다. 외부 편집에는 원격 shell 등 추가 조건이 있으므로 [권한 점검(영문)](../sftp-write-permissions.md)을 확인하세요.
 - **Docker:** [읽기 중심 점검표(영문)](../docker-disk-space-checklist.md)로 컨테이너 상태와 범위를 제한한 로그를 확인하세요. 서버 계정의 권한이 필요합니다. 체험을 위해 컨테이너나 볼륨을 삭제하지 마세요.
 - **오래 걸리는 작업:** 연결이 끊겨도 계속되어야 하는 작업을 맡기기 전에 [원격 tmux 연습(영문)](../remote-jobs.md)을 진행하세요.
 
