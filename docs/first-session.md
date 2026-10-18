@@ -12,6 +12,14 @@ Open Nexus Shell, select **Membership** in the sidebar, then **Sign In**. Finish
 
 If the app is still waiting, finish that app-initiated browser flow or start Sign In again from the app. Do not share callback URLs or tokens. If the account is present but the plan seems stale, use **Refresh** in Membership. Check the account and its eligibility before buying again or creating another account.
 
+### Stuck on “Waiting for browser auth…”
+
+Website sign-in and app sign-in are separate steps. If the browser has finished signing in but Nexus Shell is still waiting, use **Open Nexus Shell** on the browser's return panel and allow the browser's app-opening prompt. Keep that tab open while you confirm the account in Membership. The manual link is short-lived and is removed from the page after a minute; it is not proof that the app received it.
+
+If there is no return panel, it reports that the attempt cannot continue, or the app has timed out, cancel the waiting sign-in in Nexus Shell and start **Sign In** again from the app. Continue in that newly opened browser flow. Do not copy the page address into a different browser, share the return link, buy Pro again or create another account as a workaround. Registration and trial eligibility are not reset by retrying sign-in.
+
+If it still fails, note whether the browser never opened, sign-in failed on the website, or the website completed but the app kept waiting. Send only that stage, installation channel, app/browser/macOS versions and a redacted error through the [support options](https://nexusshell.app/en/contact?utm_source=github-releases&utm_medium=repository&utm_campaign=first_session_202610). Do not include callback links, tokens, SSH credentials or unrelated browser data. These are recovery instructions, not a claim that a particular customer's login or trial has been restored.
+
 Eligible new website accounts receive a one-time seven-day Pro trial without a card, granted through registration. Installing or signing in again does not restart it; confirm the displayed status and expiry. It ends without an automatic charge. Free SSH is for personal, non-commercial use; SFTP, Docker and monitoring require Pro or an eligible trial.
 
 **Mac App Store users:** skip the website account steps. Use the app's Apple purchase/restore flow and the terms shown by Apple. Store Pro offers lifetime or auto-renewing annual purchase, without Agent Bridge. Website and Store purchases and data are separate; buying one does not promise an entitlement in the other.
