@@ -1,0 +1,45 @@
+{
+  "checkedAt": "2026-10-19T00:00:45.992Z",
+  "platform": "darwin",
+  "osRelease": "27.0.0",
+  "node": "v25.6.1",
+  "openssh": "OpenSSH_10.3p1, LibreSSL 3.3.6",
+  "passed": 5,
+  "network": false,
+  "authentication": false,
+  "realFilesystemOperations": false,
+  "nexusGui": false,
+  "limitation": "Minimal synthetic SFTP startup only; not a diagnosis of any real server or client.",
+  "results": [
+    {
+      "mode": "clean",
+      "exitCode": 0,
+      "stdout": "sftp> quit",
+      "stderr": ""
+    },
+    {
+      "mode": "stdout-text",
+      "exitCode": 255,
+      "stdout": "",
+      "stderr": "Received message too long 1466264675\r\nEnsure the remote shell produces no output for non-interactive sessions."
+    },
+    {
+      "mode": "stderr-text",
+      "exitCode": 0,
+      "stdout": "sftp> quit",
+      "stderr": "Welcome to a disposable fixture"
+    },
+    {
+      "mode": "eof",
+      "exitCode": 255,
+      "stdout": "",
+      "stderr": "Connection closed"
+    },
+    {
+      "mode": "binary-length",
+      "exitCode": 255,
+      "stdout": "",
+      "stderr": "Received message too long 4294967295\r\nEnsure the remote shell produces no output for non-interactive sessions."
+    }
+  ]
+}

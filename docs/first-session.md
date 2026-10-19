@@ -31,6 +31,7 @@ Keep your existing client and choose a non-critical server. Enter its host, port
 Run a harmless read-only command such as `uptime` and confirm the intended server. If login fails, use the [connection checklist](https://nexusshell.app/en/guides/fix-mac-ssh-no-route-to-host/?utm_source=github-releases&utm_medium=repository&utm_campaign=first_session_202610). Do not assume OpenSSH aliases, external agents or another client's configuration migrate automatically.
 
 - **Files:** use the [disposable SFTP test pack](sftp-transfer-check.md), upload to a new directory your account owns, download to another empty Mac directory, and verify against the original manifest. Successful SSH does not establish write permissions. External editing has additional remote-shell requirements; see [permission checks](sftp-write-permissions.md).
+- **Files never appear after login:** use the [SFTP startup checklist and five-case offline experiment](sftp-startup-check.md) to separate EOF, an unavailable subsystem and unexpected protocol output before changing permissions.
 - **Docker:** inspect a container and bounded logs with the [read-only checklist](docker-disk-space-checklist.md). Server-side permissions still apply. Do not delete containers or volumes as a trial exercise.
 - **Long-running work:** follow the [remote tmux rehearsal](remote-jobs.md) before trusting a job to a connection that may drop.
 

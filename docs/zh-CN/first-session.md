@@ -31,6 +31,7 @@ Nexus Shell 团队 · 2026年10月5日 · [English](../first-session.md)
 运行`uptime`等只读命令，确认连接的是预期服务器。无法登录时按[连接检查清单](https://nexusshell.app/en/guides/fix-mac-ssh-no-route-to-host/?utm_source=github-releases&utm_medium=repository&utm_campaign=first_session_202610)分诊；不要假设OpenSSH别名、外部agent或其他客户端配置会自动迁移。
 
 - **文件：**用[临时SFTP测试包](sftp-transfer-check.md)，上传到自己有权限的新测试目录，下载到另一个空目录，与保留的原始清单比对。SSH成功不代表可写文件；外部编辑还有远程shell条件，参考[权限说明（英文）](../sftp-write-permissions.md)。
+- **登录后始终没有文件列表：**先看[SFTP启动分诊与五个离线案例（英文）](../sftp-startup-check.md)，区分连接关闭、子系统不可用和协议中混入文本，再处理文件权限。
 - **Docker：**按[只读清单（英文）](../docker-disk-space-checklist.md)查看容器和有限日志，服务器权限仍然生效，不为试用而删除容器或卷。
 - **长任务：**先完成[远程tmux演练](remote-jobs.md)，再处理断线后仍需继续的工作。
 
