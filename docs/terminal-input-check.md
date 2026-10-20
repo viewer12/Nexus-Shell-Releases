@@ -6,6 +6,8 @@ If symbols such as `*`, `:`, `~` or `!` sometimes need two presses while a Chine
 
 ## 1. Check the version and the symptom
 
+**Updated October 20:** [website / Homebrew v1.7.14](https://github.com/viewer12/Nexus-Shell-Releases/releases/tag/v1.7.14) addresses a separate symptom: rapidly pressing the same key twice can lose the second press while a Chinese or Japanese input method is active, including digits, space, `-` or `=`. In a local text editor, try dummy pairs such as **11 22 -- ==** slowly and quickly, then compare your input sources. This is sample text, not a command to execute. Compare in the app without executing it only in a non-critical session you control. Do not test at a password prompt or with production commands. This release-note check is not a fresh GUI test or proof that a specific user's issue has recovered.
+
 Check the version in **About Nexus Shell**. For the website edition, use the app's update check or the [official download](https://nexusshell.app/en/?utm_source=github-releases&utm_medium=repository&utm_campaign=first_session_202610). The [current release manifest](https://nexusshell.app/releases/latest.json) identifies the current installer; do not keep an old DMG URL as your update source. Homebrew users can update their existing cask normally.
 
 For the **Mac App Store edition**, check updates through Apple. This note does not establish that the same version is already available in your storefront. Website and Store purchases and data are separate; switching editions or buying Pro again is not an input troubleshooting step.
@@ -13,6 +15,7 @@ For the **Mac App Store edition**, check updates through Apple. This note does n
 | What you observe | What to check next |
 |---|---|
 | Shift symbols intermittently need a second press with Chinese/Japanese input active | Website / Homebrew v1.7.10 release fix, then the local comparison below |
+| The second of two fast presses of the same key disappears with Chinese/Japanese input active | Check website / Homebrew v1.7.14 and compare slow versus fast dummy pairs |
 | A key consistently produces a different symbol | Active input source and physical keyboard layout |
 | Typed text is correct but pasted text changes | Original text, smart punctuation and real line breaks |
 | No characters or dots appear at a terminal password prompt | Password entry commonly disables echo; this alone is not evidence of dropped keys |

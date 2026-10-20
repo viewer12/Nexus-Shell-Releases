@@ -6,6 +6,8 @@ Nexus Shell 团队 · 2026年10月9日 · [English](../terminal-input-check.md) 
 
 ## 1. 确认版本和具体表现
 
+**10月20日更新：**[官网 / Homebrew v1.7.14](https://github.com/viewer12/Nexus-Shell-Releases/releases/tag/v1.7.14)修复的是另一种表现：中、日文输入法开启时，快速连续按同一个键（如数字、空格、`-`、`=`）可能丢失第二次输入。在本地文本编辑器中用 **11 22 -- ==** 等虚构成对文本，分别慢按、快按，再比较输入源。这是文本，不是要执行的命令；只在自己有权操作的非关键会话中比较应用输入，并且不要执行。不要在密码提示或使用生产命令时测试。本轮核对发布说明，没有重新做应用GUI实测，也不代表某位用户已恢复。
+
 在**关于 Nexus Shell**中查看版本。官网版使用应用的更新检查或[官方下载入口](https://nexusshell.app/?utm_source=github-releases&utm_medium=repository&utm_campaign=first_session_202610)，当前安装包以[发布清单](https://nexusshell.app/releases/latest.json)为准，不要长期使用旧 DMG 地址。Homebrew 用户可按原有方式更新已安装的 cask。
 
 **Mac App Store 版**通过 Apple 检查更新。本文不证明你所在商店已提供同一版本。两渠道购买和数据分别管理，不要为排查输入问题切换购买渠道或重复购买 Pro。
@@ -13,6 +15,7 @@ Nexus Shell 团队 · 2026年10月9日 · [English](../terminal-input-check.md) 
 | 观察到的表现 | 下一步 |
 |---|---|
 | 中、日文输入法下，Shift 符号偶尔需要第二次按键 | 检查官网 / Homebrew v1.7.10 修复，再做本地对照 |
+| 中、日文输入法下，同一个键快速按两次丢失第二次 | 检查官网 / Homebrew v1.7.14，对比虚构成对文本慢按和快按 |
 | 某个按键总是输出另一个符号 | 检查输入源与实体键盘布局 |
 | 手打正常，粘贴后变化 | 检查原文、智能标点和真实换行 |
 | 终端密码提示下不显示字符或圆点 | 密码输入通常关闭回显，仅凭这一点不能判断丢键 |
