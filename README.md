@@ -28,7 +28,7 @@ Docker reports **no space left on device**? Use the [read-only disk-space checkl
 
 Follow the [first-session checklist](docs/first-session.md) ([中文](docs/zh-CN/first-session.md) · [日本語](docs/ja/first-session.md) · [한국어](docs/ko/first-session.md)) to finish website-edition sign-in inside the app, confirm your trial status and verify one server task. Website registration alone is not an app session; App Store users follow Apple's purchase/restore flow instead.
 
-Typing Shift symbols with a Chinese or Japanese input method? The website / Homebrew v1.7.10 release fixes symbols occasionally needing two presses. [Check terminal input](docs/terminal-input-check.md) ([中文](docs/zh-CN/terminal-input-check.md) · [日本語](docs/ja/terminal-input-check.md)) to distinguish this from keyboard layout, password echo and paste problems.
+Typing with a Chinese or Japanese input method? Website / Homebrew v1.7.14 addresses the second of two rapid presses of the same key occasionally disappearing. The [terminal input checklist](docs/terminal-input-check.md) ([中文](docs/zh-CN/terminal-input-check.md) · [日本語](docs/ja/terminal-input-check.md)) distinguishes this from the earlier Shift-symbol issue, keyboard layout, password echo and paste problems. It includes dummy-text comparisons; check Apple separately for App Store update availability.
 
 ## Moving from WinSCP
 
