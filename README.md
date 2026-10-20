@@ -63,6 +63,8 @@ Seeing **kex_exchange_identification: Connection closed** or **reset by peer**? 
 
 If Terminal can connect but VS Code Remote-SSH hangs, use the [Mac SSH troubleshooting and SFTP fallback guide](docs/vscode-remote-ssh-fallback.md) to separate login problems from remote editor startup, inspect a Linux host, and continue a small file task. It includes primary-source diagnostics and clear limits on what a terminal workspace replaces.
 
+Tailscale is online but SSH fails, or the peer works by IP but not by name? Use the [Mac VPN/SSH comparison checklist](docs/mac-vpn-ssh-check.md) to distinguish a peer probe, macOS name resolution, the SSH listener and account or policy authorization. No credentials or private diagnostic uploads are needed.
+
 ## Free SSH tools
 
 Using a Mac for your first SFTP deployment? The [Japanese](docs/ja/sftp-transfer-check.md) and [Korean path and round-trip checklists](docs/ko/sftp-transfer-check.md) separate local and remote folders, use the existing free test pack, and explain what a successful checksum does and does not verify. Start with a disposable directory before changing a live site.
