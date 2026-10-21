@@ -1,0 +1,89 @@
+{
+  "checkedAt": "2026-10-21T00:04:45.082Z",
+  "platform": "darwin",
+  "openSSH": "OpenSSH_10.3p1, LibreSSL 3.3.6",
+  "method": "sftp -D over local pipes; preseeded synthetic partials, not injected network interruption",
+  "sourceBytes": 16384,
+  "partialBytes": 4096,
+  "sourceSHA256": "ebb1b719a8cfe5681439d2a080bbde1daf5f52ca84ca58cbd47d3e0ad3a551cb",
+  "cases": [
+    {
+      "direction": "download",
+      "case": "matching-prefix",
+      "command": "reget",
+      "exitCode": 0,
+      "bytes": 16384,
+      "sizeMatches": true,
+      "sha256": "ebb1b719a8cfe5681439d2a080bbde1daf5f52ca84ca58cbd47d3e0ad3a551cb",
+      "contentMatches": true,
+      "expectedContentMatches": true,
+      "sourceUnchanged": true
+    },
+    {
+      "direction": "download",
+      "case": "changed-prefix",
+      "command": "reget",
+      "exitCode": 0,
+      "bytes": 16384,
+      "sizeMatches": true,
+      "sha256": "bfe20282ee38ece59ffc1c5b57ac35d02d6efae661395759bc9e13ea37cbeeb0",
+      "contentMatches": false,
+      "expectedContentMatches": false,
+      "sourceUnchanged": true
+    },
+    {
+      "direction": "download",
+      "case": "fresh-copy",
+      "command": "get",
+      "exitCode": 0,
+      "bytes": 16384,
+      "sizeMatches": true,
+      "sha256": "ebb1b719a8cfe5681439d2a080bbde1daf5f52ca84ca58cbd47d3e0ad3a551cb",
+      "contentMatches": true,
+      "expectedContentMatches": true,
+      "sourceUnchanged": true
+    },
+    {
+      "direction": "upload",
+      "case": "matching-prefix",
+      "command": "reput",
+      "exitCode": 0,
+      "bytes": 16384,
+      "sizeMatches": true,
+      "sha256": "ebb1b719a8cfe5681439d2a080bbde1daf5f52ca84ca58cbd47d3e0ad3a551cb",
+      "contentMatches": true,
+      "expectedContentMatches": true,
+      "sourceUnchanged": true
+    },
+    {
+      "direction": "upload",
+      "case": "changed-prefix",
+      "command": "reput",
+      "exitCode": 0,
+      "bytes": 16384,
+      "sizeMatches": true,
+      "sha256": "bfe20282ee38ece59ffc1c5b57ac35d02d6efae661395759bc9e13ea37cbeeb0",
+      "contentMatches": false,
+      "expectedContentMatches": false,
+      "sourceUnchanged": true
+    },
+    {
+      "direction": "upload",
+      "case": "fresh-copy",
+      "command": "put",
+      "exitCode": 0,
+      "bytes": 16384,
+      "sizeMatches": true,
+      "sha256": "ebb1b719a8cfe5681439d2a080bbde1daf5f52ca84ca58cbd47d3e0ad3a551cb",
+      "contentMatches": true,
+      "expectedContentMatches": true,
+      "sourceUnchanged": true
+    }
+  ],
+  "passed": 6,
+  "network": false,
+  "credentials": false,
+  "nexusGUI": false,
+  "realServerCompatibility": "not tested",
+  "temporaryDataRemoved": true
+}

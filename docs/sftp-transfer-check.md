@@ -1,6 +1,6 @@
 # Check one SFTP round trip before moving real files
 
-Nexus Shell team · Published October 4, 2026 · Updated October 7, 2026 · [中文](zh-CN/sftp-transfer-check.md)
+Nexus Shell team · Published October 4, 2026 · Updated October 21, 2026 · [中文](zh-CN/sftp-transfer-check.md)
 
 [Download the free test ZIP](https://nexusshell.app/assets/downloads/sftp-transfer-check.zip). Five synthetic files cover spaces, a Chinese filename and UTF-8 text, a hidden dotfile, an empty file and binary bytes. A SHA-256 manifest and English/Chinese instructions are included. This works with any SFTP client, is not an installer and contains no credentials or executable payloads. Test data is CC0-1.0.
 
@@ -21,6 +21,24 @@ No remote shell is needed: checks run on the Mac after download, including for S
 Open the [local test-file checker](https://nexusshell.app/en/guides/winscp-alternative-for-mac/?utm_source=github-releases&utm_medium=repository&utm_campaign=multi_server_files_202609#transfer-check). Select all five payload files from the separate **downloaded** copy, not the original folder or ZIP. In the Mac file picker, Command + Shift + . shows hidden files. Use only the synthetic test data.
 
 The checker reports missing, changed, unreadable and duplicate names. It uses the fixed original hashes, so selecting a changed SHA256SUMS cannot redefine the baseline. It does not upload file contents or hashes. Other selected files, including README and the manifest, are explicitly unchecked. Clear selection removes the displayed results. A passing result only verifies the five selected files' bytes; the limits above still apply. Without JavaScript or browser hashing support, use the Terminal command.
+
+## Interrupted transfer: check the prefix before resuming
+
+A completed resume can have the expected size and still contain the wrong bytes. OpenSSH `reget` (download) and `reput` (upload) reuse the existing partial's prefix. They do not establish that those bytes came from the current source version. See the [OpenSSH resume warning](https://man.openbsd.org/sftp.1#a).
+
+Keep the unchanged source and partial separate. Check the server, path, direction and source version before retrying. If the partial cannot be tied to that source, copy the full file to a new staging name or directory and leave the live destination intact. After completion, compare SHA-256 with the retained original. For SFTP-only accounts, download the staged upload to a separate empty Mac folder and check there; a remote shell is not necessary for that comparison. This is a recovery decision, not a recommendation to resume an unknown production partial.
+
+Our local experiment seeded a 4,096-byte partial for a 16,384-byte synthetic file, then ran the actual OpenSSH SFTP client and local subsystem over pipes:
+
+| Starting copy | Download / upload command | Exit / final size | SHA-256 equals source |
+| --- | --- | --- | --- |
+| Matching prefix | `reget` / `reput` | 0 / 16,384 bytes | Yes, both directions |
+| First byte of prefix changed | `reget` / `reput` | 0 / 16,384 bytes | **No, both directions** |
+| New destination | `get` / `put` | 0 / 16,384 bytes | Yes, both directions |
+
+[Reproducible source](../examples/sftp-resume-lab.mjs) · [Recorded six-case results](fixtures/sftp-resume-result.json). Run `node examples/sftp-resume-lab.mjs` from this repository on a machine with Node.js and the OpenSSH client/server component. It creates synthetic files in a fresh temporary directory and removes only that directory. It opens no listener, uses no SSH login or credentials, and does not read personal SSH settings. The partials are seeded deliberately; this does not inject a real network failure or exercise Nexus Shell's GUI.
+
+The five-file browser checker only verifies its fixed test pack. It cannot validate an arbitrary export or backup. This experiment does not prove Nexus automatic resume, large-transfer reliability, App Store compatibility or service deployment. Validate the exact client's behavior before relying on it.
 
 ## Reproduce the offline validation
 

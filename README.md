@@ -69,6 +69,8 @@ Tailscale is online but SSH fails, or the peer works by IP but not by name? Use 
 
 Using a Mac for your first SFTP deployment? The [Japanese](docs/ja/sftp-transfer-check.md) and [Korean path and round-trip checklists](docs/ko/sftp-transfer-check.md) separate local and remote folders, use the existing free test pack, and explain what a successful checksum does and does not verify. Start with a disposable directory before changing a live site.
 
+Resumed a transfer and got the expected file size, but the contents are wrong? The [SFTP prefix-integrity checklist and six-case OpenSSH experiment](docs/sftp-transfer-check.md#interrupted-transfer-check-the-prefix-before-resuming) distinguish a successful resume from a verified copy. Source and results are included; this is a local subsystem experiment, not a Nexus GUI resume claim.
+
 Running a long job before closing your Mac? Use the [remote job continuity checklist](docs/remote-jobs.md) ([中文操作说明](docs/zh-CN/remote-jobs.md)) to start remote tmux, detach, reconnect and inspect the original task. It includes a harmless rehearsal, exact-name return commands and a browser-local command builder. It explains why SSH reconnect, file-transfer recovery and local tunnels are separate concerns.
 
 SSH connects, but **saving a file fails**? Follow the [SFTP write-permission checklist and local experiment](docs/sftp-write-permissions.md). It demonstrates why a writable file can still fail during temporary-file creation or rename, and explains the website edition's remote-shell requirement.
