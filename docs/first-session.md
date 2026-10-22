@@ -20,6 +20,19 @@ If there is no return panel, it reports that the attempt cannot continue, or the
 
 If it still fails, note whether the browser never opened, sign-in failed on the website, or the website completed but the app kept waiting. Send only that stage, installation channel, app/browser/macOS versions and a redacted error through the [support options](https://nexusshell.app/en/contact?utm_source=github-releases&utm_medium=repository&utm_campaign=first_session_202610). Do not include callback links, tokens, SSH credentials or unrelated browser data. These are recovery instructions, not a claim that a particular customer's login or trial has been restored.
 
+### Browser sign-in works, but the app cannot connect: check outbound rules
+
+The browser and Nexus Shell make their own network connections. Allowing a browser does not allow the app. An outbound filter such as Little Snitch can block the app's account requests while the website still works. This is separate from macOS Local Network permission for reaching a LAN server, and is one possible cause, not a diagnosis of every stalled login.
+
+1. Keep the filter enabled. Note the time, then start one fresh Sign In attempt from Nexus Shell.
+2. In the filter's connection history, inspect denied connections for the installed Nexus Shell process at that time. Check the app identity, destination hostname, port and matching rule. Little Snitch's [rule reference](https://help.obdev.at/littlesnitch6/concepts-rules) explains process-specific matching; controls vary by version.
+3. If you recognize a required account connection and intend to permit it, change only that app/destination rule using your filter's supported controls. Review any broader deny rule or active profile before assuming an allow rule took effect. Do not disable filtering globally, allow every process, import an unknown ruleset or bypass an organization policy. Ask support or your administrator if a destination is unfamiliar.
+4. Cancel the expired attempt in Nexus Shell and start Sign In again. Confirm the account and membership status inside the app. If it remains signed out, record the failed stage and redacted error; a rule change alone does not prove recovery.
+
+A successful browser or Terminal request tests that process, not Nexus Shell. No denied entry is not proof that every network layer works. Do not buy again, reset your SSH keys or change your VPS firewall to fix an unconfirmed account connection problem. App Store users use Apple's purchase/restore flow instead of this website-account flow.
+
+Network-filter checks added October 22, 2026. These are documentation steps, not a live test of your Mac's firewall or a claim that an app update repairs its rules.
+
 Eligible new website accounts receive a one-time seven-day Pro trial without a card, granted through registration. Installing or signing in again does not restart it; confirm the displayed status and expiry. It ends without an automatic charge. Free SSH is for personal, non-commercial use; SFTP, Docker and monitoring require Pro or an eligible trial.
 
 **Mac App Store users:** skip the website account steps. Use the app's Apple purchase/restore flow and the terms shown by Apple. Store Pro offers lifetime or auto-renewing annual purchase, without Agent Bridge. Website and Store purchases and data are separate; buying one does not promise an entitlement in the other.
