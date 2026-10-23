@@ -1,6 +1,6 @@
 # Check one SFTP round trip before moving real files
 
-Nexus Shell team · Published October 4, 2026 · Updated October 21, 2026 · [中文](zh-CN/sftp-transfer-check.md)
+Nexus Shell team · Published October 4, 2026 · Updated October 23, 2026 · [中文](zh-CN/sftp-transfer-check.md)
 
 [Download the free test ZIP](https://nexusshell.app/assets/downloads/sftp-transfer-check.zip). Five synthetic files cover spaces, a Chinese filename and UTF-8 text, a hidden dotfile, an empty file and binary bytes. A SHA-256 manifest and English/Chinese instructions are included. This works with any SFTP client, is not an installer and contains no credentials or executable payloads. Test data is CC0-1.0.
 
@@ -39,6 +39,26 @@ Our local experiment seeded a 4,096-byte partial for a 16,384-byte synthetic fil
 [Reproducible source](../examples/sftp-resume-lab.mjs) · [Recorded six-case results](fixtures/sftp-resume-result.json). Run `node examples/sftp-resume-lab.mjs` from this repository on a machine with Node.js and the OpenSSH client/server component. It creates synthetic files in a fresh temporary directory and removes only that directory. It opens no listener, uses no SSH login or credentials, and does not read personal SSH settings. The partials are seeded deliberately; this does not inject a real network failure or exercise Nexus Shell's GUI.
 
 The five-file browser checker only verifies its fixed test pack. It cannot validate an arbitrary export or backup. This experiment does not prove Nexus automatic resume, large-transfer reliability, App Store compatibility or service deployment. Validate the exact client's behavior before relying on it.
+
+## Two Linux files become one on the Mac: check filename case
+
+`report.txt` and `Report.txt` can be separate files on a case-sensitive source. A case-insensitive destination cannot keep both names in the same folder. Depending on the client's handling of an existing destination, the transfer may stop, skip one copy, ask what to do, or overwrite it. A completed progress bar or one matching file size does not prove both files survived.
+
+1. Keep both source files unchanged. Compare the exact source names, including their parent folders, against the downloaded listing. Refresh a filtered or hidden-file view separately; changing visibility does not resolve a name collision.
+2. On the Mac, select the **actual destination volume** in Disk Utility and use Info to check its format. Apple distinguishes [APFS from APFS (Case-sensitive)](https://support.apple.com/guide/disk-utility/file-system-formats-dsku19ed921c/mac). Do not assume a folder on an external disk or network mount behaves like the startup disk, or erase a volume to troubleshoot a download.
+3. To retain both copies, download them into **separate, distinctly named parent folders**, or use an existing, verified case-sensitive destination. An approved server-side archive can retain the entries inside the archive while stored as one file; extracting it onto an incompatible volume reintroduces the collision. Do not rename production source files or choose overwrite-all just to finish a test.
+4. Verify both downloaded copies against their separate retained source baselines before cleanup. The fixed five-file ZIP/checker does **not** test case collisions or arbitrary source trees. Switching SSH clients or buying Pro cannot make a case-insensitive folder store two conflicting names.
+
+On October 23, 2026 (Singapore time), our local macOS 27.0.1 experiment found:
+
+| Synthetic operation on the tested temporary filesystem | Result |
+| --- | --- |
+| Create `report.txt`, then create `Report.txt` exclusively | Second creation refused with `EEXIST`; original intact |
+| Ordinary writes to both names in one parent | One directory entry; still 6 bytes, but the first copy's SHA-256 changed |
+| Two distinct names in one parent | Both contents retained |
+| Case-only names in two distinctly named parents | Both contents retained |
+
+[Experiment source](../examples/mac-filename-case-lab.mjs) · [Recorded four-case results](fixtures/mac-filename-case-result.json). Optional reproduction: `node examples/mac-filename-case-lab.mjs` with Node.js already available. It creates and removes only its own synthetic temporary directory; no network, account, personal file access, disk formatting or mounting. Results describe that tested destination, not every Mac volume, Unicode normalization, SFTP transfer behavior, Nexus Shell GUI or App Store compatibility. Fetch also documents this [same-name download limitation](https://fetchsoftworks.com/fetch/help/Contents/FAQ/TroubleshootingFAQ.html); it is not evidence of a new Nexus-specific fault.
 
 ## Reproduce the offline validation
 
