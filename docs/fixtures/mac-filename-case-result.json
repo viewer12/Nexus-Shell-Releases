@@ -1,0 +1,37 @@
+{
+  "checkedAt": "2026-10-23T00:04:15.851Z",
+  "platform": "darwin",
+  "arch": "arm64",
+  "macOS": "27.0.1",
+  "node": "v25.6.1",
+  "observedCaseSensitive": false,
+  "passed": 4,
+  "results": [
+    {
+      "case": "same parent, exclusive creation",
+      "secondCreate": "EEXIST",
+      "entries": 1,
+      "originalPreserved": true
+    },
+    {
+      "case": "same parent, ordinary write",
+      "entries": 1,
+      "originalBytes": 6,
+      "finalBytes": 6,
+      "originalHash": "b908e4daaf9d57fe9cb551a689a35c9a9e0fac85fdf11faaa0a1ba0e5efc06fd",
+      "finalHash": "e83189db38554920ea572093f9ad32facf682f28ccecdac085c1511735a2b492",
+      "originalPreserved": false
+    },
+    {
+      "case": "distinct names in one parent",
+      "entries": 2,
+      "bothPreserved": true
+    },
+    {
+      "case": "same spelling apart from case, separate parents",
+      "entries": 2,
+      "bothPreserved": true
+    }
+  ],
+  "scope": "Fresh temporary directory on this host only; filesystem semantics, not an SFTP, Nexus GUI, archive or Unicode normalization test. No user volume formatted or mounted."
+}

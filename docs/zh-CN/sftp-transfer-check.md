@@ -1,6 +1,6 @@
 # 用无敏感文件检查一次 SFTP 往返传输
 
-Nexus Shell 团队 · 首发2026-10-04 · 更新2026-10-21 · [English](../sftp-transfer-check.md)
+Nexus Shell 团队 · 首发2026-10-04 · 更新2026-10-23 · [English](../sftp-transfer-check.md)
 
 [下载免费测试 ZIP](https://nexusshell.app/assets/downloads/sftp-transfer-check.zip)。五个合成文件覆盖空格文件名、中文文件名与 UTF-8 正文、隐藏文件、空文件和二进制数据，附带 SHA-256 清单及中英文说明。可用于任意 SFTP 客户端，不是安装包，无密码、密钥或可执行载荷。测试数据按 CC0-1.0 提供。
 
@@ -29,5 +29,18 @@ OpenSSH 的 `reget`（继续下载）和 `reput`（继续上传）沿用已有�
 [六案例实验源码](../../examples/sftp-resume-lab.mjs)及[实际结果](../fixtures/sftp-resume-result.json)使用16,384字节合成源文件、4,096字节预置部分副本。正确前缀续传和新目标完整复制在上传/下载两个方向均校验一致；只改变部分副本的第一个字节，续传仍返回0、最终大小仍为16,384，但哈希不一致。从仓库运行 `node examples/sftp-resume-lab.mjs` 可复现，需要Node.js及OpenSSH客户端/本地SFTP子系统；仅操作新建临时目录并清理该目录，不联网、不登录或读取个人SSH配置。
 
 这是本地子系统通过管道传输、主动预置部分文件的实验，不是真实断网、Nexus界面、大文件可靠性或App Store兼容实测，也不承诺Nexus自动断点续传。现有五文件浏览器工具只认识固定测试包，不能用来验证任意备份或生产文件。
+
+## Linux两个文件下载到Mac只剩一个：先查大小写冲突
+
+区分大小写的源目录可以同时保存 `report.txt` 和 `Report.txt`；不区分大小写的目标目录无法同时保留这两个名字。客户端可能中止、跳过、询问或覆盖，具体取决于其处理方式。进度完成、一个文件大小正确，不证明两份都保留下来。
+
+1. 保留两个源文件不变，对照源端完整文件名及父目录与下载列表。隐藏文件/筛选视图另行刷新，显示设置不能解决重名冲突。
+2. 在Mac“磁盘工具”选中**实际下载目标卷**，用“信息”查看格式。[Apple区分APFS与APFS（区分大小写）](https://support.apple.com/guide/disk-utility/file-system-formats-dsku19ed921c/mac)；外置盘、网络挂载点不一定与启动卷相同。不要为排查下载问题抹掉或重格式化磁盘。
+3. 将两份分别下载到**名字明确不同的父文件夹**，或使用已有且核验过的区分大小写目标。经许可在源端生成归档、把归档作为单文件保存可保留内部条目，但解压到不兼容卷仍会冲突。不要改生产源文件名或选择全部覆盖来强行完成。
+4. 按两份各自保留的源基准核验内容后再清理。固定五文件ZIP/浏览器工具不检查大小写冲突或任意源目录；换SSH客户端或购买Pro不会改变目标文件系统的命名规则。
+
+2026-10-23新加坡时间，在本机macOS27.0.1临时目录执行四案例：同目录第二次排他创建大小写名字返回EEXIST、原件保留；普通写入后仅一个条目、仍6字节但第一份哈希变化；同目录两个不同名与分开放在两个不同名父目录均保留两份。[源码](../../examples/mac-filename-case-lab.mjs)及[结果](../fixtures/mac-filename-case-result.json)公开；已有Node.js时可从仓库运行 `node examples/mac-filename-case-lab.mjs`。仅创建并清理自身合成临时目录，无联网、登录、个人文件访问、磁盘格式化或挂载。
+
+这是目标文件系统行为实验，不是每种Mac卷、Unicode规范化、真实SFTP传输、Nexus界面或商店兼容测试。[Fetch官方同名下载说明](https://fetchsoftworks.com/fetch/help/Contents/FAQ/TroubleshootingFAQ.html)也已有覆盖，不把它称为本品新故障。
 
 继续看[多服务器流程](multi-server-files.md)或[官网迁移指南](https://nexusshell.app/en/guides/winscp-alternative-for-mac/?utm_source=github-releases&utm_medium=repository&utm_campaign=multi_server_files_202609#transfer-check)。数据免费；Nexus Shell SFTP 需 Pro 或符合资格的试用。官网新账号按资格发放七天免绑卡试用、不自动扣款，Pro 仅买断。App Store 可选买断或自动续费年付、不含 Agent Bridge，两渠道购买和数据独立。先验证任务，再决定是否[购买官网 Pro](https://nexusshell.app/?utm_source=github-releases&utm_medium=repository&utm_campaign=multi_server_files_202609#pricing)，本文不宣布新价格或生效日。
