@@ -1,0 +1,93 @@
+{
+  "verifiedOn": "2026-10-24",
+  "kind": "synthetic arithmetic fixture",
+  "liveServer": false,
+  "nexusGuiTest": false,
+  "passed": 6,
+  "results": [
+    {
+      "name": "same-work-different-denominator",
+      "input": {
+        "elapsedUsec": 2000000,
+        "usageBeforeUsec": 1000000,
+        "usageAfterUsec": 4000000,
+        "capacityCores": 2
+      },
+      "calculated": {
+        "coreEquivalentPercent": 150,
+        "capacityPercent": 75
+      },
+      "passed": true
+    },
+    {
+      "name": "pressure-is-waiting-not-usage",
+      "input": {
+        "elapsedUsec": 2000000,
+        "someTotalBeforeUsec": 100000,
+        "someTotalAfterUsec": 500000
+      },
+      "calculated": {
+        "intervalWaitingPercent": 20,
+        "cpuUsagePercent": null,
+        "avg10": null
+      },
+      "passed": true
+    },
+    {
+      "name": "throttled-periods-not-time-lost",
+      "input": {
+        "periodsBefore": 100,
+        "periodsAfter": 110,
+        "throttledBefore": 7,
+        "throttledAfter": 15
+      },
+      "calculated": {
+        "throttledPeriodPercent": 80,
+        "cpuTimeLostPercent": null
+      },
+      "passed": true
+    },
+    {
+      "name": "raw-memory-versus-cache-adjusted",
+      "input": {
+        "currentMiB": 512,
+        "inactiveFileMiB": 128,
+        "limitMiB": 1024
+      },
+      "calculated": {
+        "rawMiB": 512,
+        "cacheAdjustedMiB": 384,
+        "cacheAdjustedLimitPercent": 37.5
+      },
+      "passed": true
+    },
+    {
+      "name": "no-local-quota-does-not-establish-capacity",
+      "input": {
+        "cpuMax": "max 100000",
+        "memoryMax": "max",
+        "ancestorLimits": "unknown",
+        "cpuset": "unknown"
+      },
+      "calculated": {
+        "capacityCores": null,
+        "capacityPercent": null,
+        "memoryLimitPercent": null
+      },
+      "passed": true
+    },
+    {
+      "name": "counter-reset-needs-new-baseline",
+      "input": {
+        "usageBeforeUsec": 4000000,
+        "usageAfterUsec": 100000,
+        "elapsedUsec": 2000000
+      },
+      "calculated": {
+        "usagePercent": null,
+        "nextAction": "take a fresh baseline"
+      },
+      "passed": true
+    }
+  ]
+}

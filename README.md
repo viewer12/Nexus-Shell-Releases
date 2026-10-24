@@ -24,6 +24,8 @@ Choose your next server task in the [Mac SSH guides and tools](https://nexusshel
 
 Docker reports **no space left on device**? Use the [read-only disk-space checklist](docs/docker-disk-space-checklist.md) to distinguish filesystem capacity, inode exhaustion and VM/LXC allocation before deleting anything. It links to an interactive checklist and the Mac remote-Docker workflow.
 
+Container CPU above 100%, or memory showing the host's total? [Compare resource scope and denominators](docs/container-resource-readings.md) ([中文](docs/zh-CN/container-resource-readings.md)), with six reproducible offline counter examples. Website v1.8.0 container monitoring and the installed Store version must be checked separately.
+
 ## First time using Nexus Shell?
 
 Follow the [first-session checklist](docs/first-session.md) ([中文](docs/zh-CN/first-session.md) · [日本語](docs/ja/first-session.md) · [한국어](docs/ko/first-session.md)) to finish website-edition sign-in inside the app, confirm your trial status and verify one server task. Website registration alone is not an app session; App Store users follow Apple's purchase/restore flow instead.
