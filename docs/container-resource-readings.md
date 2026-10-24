@@ -2,7 +2,7 @@
 
 Verified October 24, 2026. [中文](zh-CN/container-resource-readings.md).
 
-Start with the [Mac remote-Docker guide](https://nexusshell.app/en/guides/troubleshoot-remote-docker-from-mac/?utm_source=github-releases&utm_medium=repository&utm_campaign=remote_docker_202609#container-cpu-above-100-percent-compare-the-denominator-first). This checklist distinguishes accounting differences before a restart or a purchase. It does not require Nexus Shell to run the offline examples.
+Start with the [Mac remote-Docker guide](https://nexusshell.app/en/guides/troubleshoot-remote-docker-from-mac/?utm_source=github-releases&utm_medium=repository#container-cpu-above-100-percent-compare-the-denominator-first). This checklist distinguishes accounting differences before a restart or a purchase. It does not require Nexus Shell to run the offline examples.
 
 ## Identify the endpoint
 

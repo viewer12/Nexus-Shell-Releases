@@ -2,7 +2,7 @@
 
 核对日期：2026-10-24。[English](../container-resource-readings.md)。
 
-先看[官网远程 Docker 指南的资源读数章节](https://nexusshell.app/en/guides/troubleshoot-remote-docker-from-mac/?utm_source=github-releases&utm_medium=repository&utm_campaign=remote_docker_202609#container-cpu-above-100-percent-compare-the-denominator-first)。目的是在重启或购买前识别口径差异，离线样例不需要 Nexus Shell。
+先看[官网远程 Docker 指南的资源读数章节](https://nexusshell.app/en/guides/troubleshoot-remote-docker-from-mac/?utm_source=github-releases&utm_medium=repository#container-cpu-above-100-percent-compare-the-denominator-first)。目的是在重启或购买前识别口径差异，离线样例不需要 Nexus Shell。
 
 ## 先确认连到了哪里
 
