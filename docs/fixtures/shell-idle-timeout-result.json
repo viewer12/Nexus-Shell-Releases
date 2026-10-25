@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-10-25T00:05:04.198Z",
+  "platform": "darwin",
+  "bash": "GNU bash, version 3.2.57(1)-release (arm64-apple-darwin26)",
+  "localPTY": true,
+  "userStartupFiles": false,
+  "sshConnection": false,
+  "physicalSleep": false,
+  "nexusGUI": false,
+  "cases": [
+    {
+      "name": "idle primary prompt",
+      "elapsedSeconds": 2.014,
+      "exitCode": 0,
+      "terminal": "\r\nThe default interactive shell is now zsh.\r\nTo update your account to use zsh, please run `chsh -s /bin/zsh`.\r\nFor more details, please visit https://support.apple.com/kb/HT208050.\r\nNEXUS_LAB> TMOUT=2; printf 'IDLE_READY\\n'\r\nIDLE_READY\r\nNEXUS_LAB> \u0007timed out waiting for input: auto-logout\r\n"
+    },
+    {
+      "name": "three-second foreground command then idle prompt",
+      "elapsedSeconds": 5.022,
+      "exitCode": 0,
+      "terminal": "\r\nThe default interactive shell is now zsh.\r\nTo update your account to use zsh, please run `chsh -s /bin/zsh`.\r\nFor more details, please visit https://support.apple.com/kb/HT208050.\r\nNEXUS_LAB> TMOUT=2; printf 'BUSY_START\\n'; sleep 3; printf 'BUSY_FINISHED\\n'\r\nBUSY_START\r\nBUSY_FINISHED\r\nNEXUS_LAB> \u0007timed out waiting for input: auto-logout\r\n"
+    }
+  ],
+  "conclusion": "Bash timed out at the prompt; the three-second command completed before the prompt timeout. This does not test SSH keepalives or server policy."
+}

@@ -1,6 +1,6 @@
 # Returning to a remote job after an SSH disconnect
 
-[中文操作说明](zh-CN/remote-jobs.md) · Continuity check September 26, 2026 · Return commands reviewed October 10, 2026
+[中文操作说明](zh-CN/remote-jobs.md) · Continuity check September 26, 2026 · Return commands reviewed October 10, 2026 · Idle-timeout checks October 25, 2026
 
 Reconnecting a saved SSH connection gives you access to the server again. It does not establish that the old shell or job survived. For an interactive Linux server job that should continue while your Mac disconnects, start it inside **tmux on the server**, then explicitly reattach.
 
@@ -36,6 +36,24 @@ Inspect the existing output, process and application logs. A new prompt, an atta
 
 If the session is missing, check the host/user, whether the session exited, a server reboot and the administrator's logout policy. Creating tmux after an interruption does not automatically adopt a job started outside it. Once all work in your test session has finished, `exit` its shell; do not kill every tmux session as cleanup.
 
+## Keepalive works, but the shell still logs out
+
+An SSH peer responding to keepalive does not mean its shell is accepting input or that the old job is running. Record the failure time and exact message. A frozen connection after a network change, a Bash auto-logout and an inactive-channel policy need different checks.
+
+1. On the Mac, `ssh -G your-saved-host` prints evaluated OpenSSH settings without logging in. Review `serveraliveinterval`, `serveralivecountmax`, `controlmaster`, `controlpath` and, where supported, `channeltimeout`. Trusted `Match exec` rules can still execute commands; do not use untrusted config or share the full output. An existing master can retain earlier options. This does not test Nexus Shell's own saved-connection settings.
+2. In the intended remote Bash shell, inspect without changing policy:
+
+```sh
+printf 'Bash: %s\n' "${BASH_VERSION-not Bash}"
+printf 'TMOUT: %s\n' "${TMOUT-unset}"
+```
+
+3. Check the outer login shell and the relevant tmux pane separately. Bash's timer waits at the primary prompt. An unset value in one shell does not rule out other idle policies. A surviving tmux server is not proof that a pane's original process survived.
+4. With the administrator, compare the installed client/server versions, same-time logs and effective conditional channel/gateway policy. `ChannelTimeout`, where supported, concerns inactive channels; responding to transport probes does not prove channel activity. `ClientAliveInterval` and `ClientAliveCountMax` concern peer responsiveness, not human typing. Channel closure need not close the whole connection or stop every related process.
+5. If Mac sleep or a lost network explains the time gap, reconnect and inspect the old task. Do not weaken deliberate idle policies or launch another backup as a diagnostic shortcut.
+
+Official references: [OpenSSH peer checks](https://man.openbsd.org/ssh_config#ServerAliveInterval), [client channel inactivity](https://man.openbsd.org/ssh_config#ChannelTimeout), [server channel inactivity](https://man.openbsd.org/sshd_config#ChannelTimeout), [Bash interactive behavior](https://www.gnu.org/software/bash/manual/html_node/Interactive-Shell-Behavior.html). Options vary by installed version; this is not a guarantee that a given GUI client reads OpenSSH configuration.
+
 ## Choose the right recovery mechanism
 
 - Server reboot recovery: use the server's service manager/scheduler and application checkpoint or restart rules.
@@ -44,6 +62,18 @@ If the session is missing, check the host/user, whether the session exited, a se
 - File and container inspection after reconnecting: Nexus Shell's SFTP, Docker and monitoring features require Pro. tmux is a separate server tool, not a paid Nexus Shell feature.
 
 Nexus Shell requires Apple Silicon and macOS 14.2+. Its free tier covers personal, non-commercial SSH use. Website Pro is lifetime only; [review current website terms](https://nexusshell.app/en/?utm_source=github-releases&utm_medium=repository&utm_campaign=remote_jobs_202609#pricing). The App Store offers lifetime and auto-renewing annual options, without a Nexus Shell account or Agent Bridge. Purchases/data are managed separately and connections do not migrate automatically.
+
+## Reproduce the shell idle-timeout check
+
+Read the [two-case source](../examples/verify-shell-idle-timeout.mjs) and [recorded terminal output](fixtures/shell-idle-timeout-result.json). With Node.js 18+, `/usr/bin/python3` and `/bin/bash` already installed, run from the repository root:
+
+```sh
+node examples/verify-shell-idle-timeout.mjs
+```
+
+The script opens isolated local pseudo-terminals with Bash startup files disabled and history directed to `/dev/null`. It does not open SSH, read SSH configuration, alter your shell defaults or use a server. Python supplies the PTY; no package install is needed. A hard lab deadline cleans up only its own child.
+
+On October 25, macOS Bash 3.2.57 with `TMOUT=2` logged out at an idle prompt after about two seconds. In the other case a three-second foreground command completed, then the prompt logged out after another two seconds. Both tests assert the timeout message; an exit status of zero alone would not distinguish auto-logout from an ordinary exit. This checks local shell semantics, not network keepalives, a customer's login policy, physical sleep or Nexus Shell's GUI. Existing September 26 and October 10 observations below retain their original scope and dates.
 
 ## Reproduce the local continuity check
 
