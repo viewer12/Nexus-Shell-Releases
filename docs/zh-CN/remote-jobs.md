@@ -1,6 +1,6 @@
 # Mac 休眠或 SSH 断线后，继续之前的远程任务
 
-[English checklist](../remote-jobs.md) · 连续性测试：2026-09-26 · 接回命令核对：2026-10-10
+[English checklist](../remote-jobs.md) · 连续性测试：2026-09-26 · 接回命令核对：2026-10-10 · 空闲注销检查：2026-10-25
 
 重新连接服务器，不代表原来的命令还在运行。要让 Linux 服务器上的交互式构建、导出或维护任务在 Mac 断开后继续，应当在**远程服务器的 tmux 会话里先启动任务**，回来后再连接同一服务器、同一远程账号，手动接回该会话。
 
@@ -60,6 +60,24 @@ tmux attach-session -t '=maintenance'
 
 测试会话里的工作全部结束后，在该 shell 输入 exit；最后一个窗口/面板关闭时会话结束。不要用 kill-server 批量清理，否则会影响同一 tmux server 中其他会话。
 
+## 开了 keepalive，为什么仍然被注销
+
+SSH 对端回应保活，不等于 shell 正在接受输入，也不等于原任务还在运行。先记录断开时间和原始消息，再分清网络中断、shell 空闲注销和通道策略。
+
+1. 在 Mac 的 Terminal 运行 `ssh -G your-saved-host`，查看 `serveraliveinterval`、`serveralivecountmax`、`controlmaster`、`controlpath`，以及当前版本支持时的 `channeltimeout`。这只展开 OpenSSH 配置，不登录；可信配置里的 `Match exec` 仍可能执行本地命令。不要读取不可信配置或公开完整输出；已有 master 可能保留旧设置。这也不代表 Nexus Shell 已导入这些选项。
+2. 在需要检查的远程 Bash 中只读查看版本和计时器：
+
+```sh
+printf 'Bash: %s\n' "${BASH_VERSION-not Bash}"
+printf 'TMOUT: %s\n' "${TMOUT-unset}"
+```
+
+3. 外层登录 shell 与具体 tmux 面板分别检查。Bash 的 TMOUT 在主提示符处等待输入时生效；一个 shell 未设置该值，不代表所有超时策略都不存在。tmux server 仍在，不代表原面板的 shell 或任务还在。
+4. 与管理员核对已安装版本、对应时点日志和条件策略。支持 ChannelTimeout 的 OpenSSH 可关闭空闲通道；传输层保活回应不代表该通道有活动。ClientAliveInterval/CountMax 检查对端响应，不检查人是否打字。关闭通道也不保证相关进程全部退出或整个连接关闭。
+5. 若时间与 Mac 休眠或网络变化一致，恢复连接后按上方步骤查看原任务。不要默认关闭有意设置的空闲策略，也不要直接再跑一份备份来诊断。
+
+依据：[OpenSSH 保活](https://man.openbsd.org/ssh_config#ServerAliveInterval)、[客户端通道策略](https://man.openbsd.org/ssh_config#ChannelTimeout)、[服务器通道策略](https://man.openbsd.org/sshd_config#ChannelTimeout)、[Bash 交互行为](https://www.gnu.org/software/bash/manual/html_node/Interactive-Shell-Behavior.html)。具体选项随版本而异，不是客户端兼容性承诺。
+
 ## 这套方法不覆盖什么
 
 - 服务器重启后恢复服务：需要服务管理器、调度器及应用自身的检查点/重启策略。
@@ -70,6 +88,18 @@ tmux attach-session -t '=maintenance'
 [完整英文演练与故障排查](https://nexusshell.app/en/guides/keep-remote-jobs-running-after-mac-sleep/?utm_source=github-releases&utm_medium=repository&utm_campaign=remote_jobs_202609)
 
 Nexus Shell 要求 Apple Silicon 和 macOS 14.2+。个人非商业 SSH 有免费层；tmux 是独立的服务器工具，并非必须购买 Pro 才能使用。SFTP、Docker 管理和监控属于 Pro 功能。[官网 Pro](https://nexusshell.app/?utm_source=github-releases&utm_medium=repository&utm_campaign=remote_jobs_202609#pricing) 仅提供 lifetime 买断；App Store 提供 lifetime 和自动续费年付，无 Nexus Shell 账号及 Agent Bridge。两渠道的购买和数据分别管理，连接配置不会自动迁移。
+
+## 可复现的 shell 空闲注销演练
+
+[两案例源码](../../examples/verify-shell-idle-timeout.mjs) · [原始终端结果](../fixtures/shell-idle-timeout-result.json)。本地已有 Node.js 18+、/usr/bin/python3 与 /bin/bash 时，先阅读源码，再从仓库根目录运行：
+
+```sh
+node examples/verify-shell-idle-timeout.mjs
+```
+
+脚本创建本机隔离伪终端，不加载 Bash 启动文件，历史定向 /dev/null；不连接 SSH、不读 SSH 配置、不改用户默认 shell，也不需要安装软件。Python 只提供 PTY，超时只清理自己的子进程。
+
+10月25日在 macOS Bash 3.2.57 设置测试用 TMOUT=2：空闲提示符约2秒后自动注销；另一案例的3秒前台命令先完成，再于返回提示符约2秒后注销。断言检查了注销消息，不把退出码0误当普通成功退出。它只验证本机 shell 语义，不验证网络保活、客户服务器策略、物理休眠或 Nexus Shell GUI。下方9月26日、10月10日记录保持原日期和范围。
 
 ## 可复现的本地验证
 
