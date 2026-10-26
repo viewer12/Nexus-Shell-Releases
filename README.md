@@ -55,7 +55,7 @@ Basic SSH is free for personal, non-commercial use. SFTP, Docker and monitoring 
 
 Reaching a private server through a bastion? Use the [Mac jump-host setup and offline configuration check](docs/jump-host-on-mac.md) to keep each hop's account, port and key separate and distinguish forwarding policy from target authentication.
 
-Seeing **Server Fingerprint Changed** or **REMOTE HOST IDENTIFICATION HAS CHANGED**? Use the [host-key recovery checklist](docs/ssh-host-key-changed.md) ([中文说明](docs/zh-CN/ssh-host-key-changed.md)) to verify the destination before replacing a saved record. The included offline rehearsal checks hashed names and nondefault ports without touching your SSH files.
+Seeing **Server Fingerprint Changed** or **REMOTE HOST IDENTIFICATION HAS CHANGED**? Use the [host-key recovery checklist](docs/ssh-host-key-changed.md) ([中文说明](docs/zh-CN/ssh-host-key-changed.md)) to verify the destination before replacing a saved record. If ssh-keygen -R already ran but the warning remains, [check the exact port, trust alias and file](docs/ssh-host-key-changed.md#why-ssh-keygen--r-did-not-remove-the-warning). The offline rehearsals demonstrate why a zero exit status can still mean “not found”, without touching your SSH files or connecting to a server.
 
 If SSH stops with **Too many authentication failures**, use the [Mac SSH key-selection walkthrough and isolated fixture](docs/ssh-key-selection-on-mac.md). Inspect which keys OpenSSH selects, account for overlapping config rules, and keep agent-held private keys in their existing store. The fixture resolves example settings without logging in to a server.
 

@@ -1,0 +1,177 @@
+{
+  "recordedAt": "2026-10-26T00:01:32.013Z",
+  "platform": "darwin",
+  "sshVersion": "OpenSSH_10.3p1, LibreSSL 3.3.6",
+  "passed": 6,
+  "checks": [
+    "A controlled ssh -G config exposes the explicit host, port, trust alias and custom file; no connection is made",
+    "Removing the plain host exits zero with not found while the nondefault-port record remains",
+    "Removing the alias in a different file also exits zero and leaves the selected file unchanged",
+    "The configured connection nickname is absent, while the explicit trust alias is found even after hashing",
+    "The exact alias and selected file remove only that record, with the pre-removal content in the tool backup",
+    "Another alias, the separate nondefault-port record and the ordinary file are preserved"
+  ],
+  "records": [
+    {
+      "command": [
+        "ssh-keygen",
+        "-q",
+        "-t",
+        "ed25519",
+        "-N",
+        "",
+        "-C",
+        "disposable-lab-only",
+        "-f",
+        "<LAB>/disposable"
+      ],
+      "status": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "ssh",
+        "-V"
+      ],
+      "status": 0,
+      "stdout": "",
+      "stderr": "OpenSSH_10.3p1, LibreSSL 3.3.6\n"
+    },
+    {
+      "command": [
+        "ssh",
+        "-G",
+        "-F",
+        "<LAB>/ssh_config",
+        "lab-blue"
+      ],
+      "status": 0,
+      "stdout": "host lab-blue\nuser sameral\nhostname server.example\nport 2222\naddressfamily any\nbatchmode no\ncanonicalizefallbacklocal yes\ncanonicalizehostname false\ncheckhostip no\ncompression no\ncontrolmaster false\nenablesshkeysign no\nclearallforwardings no\nexitonforwardfailure no\nfingerprinthash SHA256\nforwardx11 no\nforwardx11trusted no\ngatewayports no\ngssapiauthentication no\ngssapidelegatecredentials no\nhashknownhosts no\nhostbasedauthentication no\nidentitiesonly no\nkbdinteractiveauthentication yes\nnohostauthenticationforlocalhost no\nnohostauthenticationforproxycommand no\npasswordauthentication yes\npermitlocalcommand no\nproxyusefdpass no\npubkeyauthentication true\nrequesttty auto\nsessiontype default\nstdinnull no\nforkafterauthentication no\nstreamlocalbindunlink no\nstricthostkeychecking ask\ntcpkeepalive yes\ntunnel false\nverifyhostkeydns false\nvisualhostkey no\nupdatehostkeys false\nenableescapecommandline no\nwarnweakcrypto yes\napplemultipath no\ncanonicalizemaxdots 1\nconnectionattempts 1\nforwardx11timeout 1200\nnumberofpasswordprompts 3\nserveralivecountmax 3\nserveraliveinterval 0\nrequiredrsasize 1024\nobscurekeystroketiming yes\nciphers chacha20-poly1305@openssh.com,aes128-gcm@openssh.com,aes256-gcm@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr\nhostkeyalgorithms ssh-ed25519-cert-v01@openssh.com,ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp521-cert-v01@openssh.com,sk-ssh-ed25519-cert-v01@openssh.com,sk-ecdsa-sha2-nistp256-cert-v01@openssh.com,webauthn-sk-ecdsa-sha2-nistp256-cert-v01@openssh.com,rsa-sha2-512-cert-v01@openssh.com,rsa-sha2-256-cert-v01@openssh.com,ssh-ed25519,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ssh-ed25519@openssh.com,sk-ecdsa-sha2-nistp256@openssh.com,webauthn-sk-ecdsa-sha2-nistp256@openssh.com,rsa-sha2-512,rsa-sha2-256\nhostkeyalias logical-blue\nhostbasedacceptedalgorithms ssh-ed25519-cert-v01@openssh.com,ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp521-cert-v01@openssh.com,sk-ssh-ed25519-cert-v01@openssh.com,sk-ecdsa-sha2-nistp256-cert-v01@openssh.com,webauthn-sk-ecdsa-sha2-nistp256-cert-v01@openssh.com,rsa-sha2-512-cert-v01@openssh.com,rsa-sha2-256-cert-v01@openssh.com,ssh-ed25519,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ssh-ed25519@openssh.com,sk-ecdsa-sha2-nistp256@openssh.com,webauthn-sk-ecdsa-sha2-nistp256@openssh.com,rsa-sha2-512,rsa-sha2-256\nkexalgorithms mlkem768x25519-sha256,sntrup761x25519-sha512,sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256\ncasignaturealgorithms ssh-ed25519,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ssh-ed25519@openssh.com,sk-ecdsa-sha2-nistp256@openssh.com,webauthn-sk-ecdsa-sha2-nistp256@openssh.com,rsa-sha2-512,rsa-sha2-256\nloglevel INFO\nmacs umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1\nsecuritykeyprovider $SSH_SK_PROVIDER\npubkeyacceptedalgorithms ssh-ed25519-cert-v01@openssh.com,ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp521-cert-v01@openssh.com,sk-ssh-ed25519-cert-v01@openssh.com,sk-ecdsa-sha2-nistp256-cert-v01@openssh.com,webauthn-sk-ecdsa-sha2-nistp256-cert-v01@openssh.com,rsa-sha2-512-cert-v01@openssh.com,rsa-sha2-256-cert-v01@openssh.com,ssh-ed25519,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ssh-ed25519@openssh.com,sk-ecdsa-sha2-nistp256@openssh.com,webauthn-sk-ecdsa-sha2-nistp256@openssh.com,rsa-sha2-512,rsa-sha2-256\nxauthlocation /usr/X11R6/bin/xauth\nidentityfile ~/.ssh/id_rsa\nidentityfile ~/.ssh/id_ecdsa\nidentityfile ~/.ssh/id_ecdsa_sk\nidentityfile ~/.ssh/id_ed25519\nidentityfile ~/.ssh/id_ed25519_sk\ncanonicaldomains none\nglobalknownhostsfile /etc/ssh/ssh_known_hosts /etc/ssh/ssh_known_hosts2\nuserknownhostsfile <LAB>/project_known_hosts\nrevokedhostkeys none\nlogverbose none\nchanneltimeout none\npermitremoteopen any\naddkeystoagent false\nforwardagent no\nconnecttimeout none\ntunneldevice any:any\ncanonicalizePermittedcnames none\ncontrolpersist no\nescapechar ~\nipqos ef cs0\nrekeylimit 0 0\nstreamlocalbindmask 0177\nsyslogfacility USER\n",
+      "stderr": "Pseudo-terminal will not be allocated because stdin is not a terminal.\r\n"
+    },
+    {
+      "command": [
+        "ssh-keygen",
+        "-R",
+        "server.example",
+        "-f",
+        "<LAB>/project_known_hosts"
+      ],
+      "status": 0,
+      "stdout": "",
+      "stderr": "Host server.example not found in <LAB>/project_known_hosts\r\n"
+    },
+    {
+      "command": [
+        "ssh-keygen",
+        "-F",
+        "[server.example]:2222",
+        "-f",
+        "<LAB>/project_known_hosts"
+      ],
+      "status": 0,
+      "stdout": "# Host [server.example]:2222 found: line 1 \n[server.example]:2222 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ56i+q2rTNl4DkXLN2KvtHVKcKuCuKj5lm8HEk0miTC disposable-lab-only\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "ssh-keygen",
+        "-R",
+        "logical-blue",
+        "-f",
+        "<LAB>/ordinary_known_hosts"
+      ],
+      "status": 0,
+      "stdout": "",
+      "stderr": "Host logical-blue not found in <LAB>/ordinary_known_hosts\r\n"
+    },
+    {
+      "command": [
+        "ssh-keygen",
+        "-H",
+        "-f",
+        "<LAB>/project_known_hosts"
+      ],
+      "status": 0,
+      "stdout": "<LAB>/project_known_hosts updated.\nOriginal contents retained as <LAB>/project_known_hosts.old\n",
+      "stderr": "WARNING: <LAB>/project_known_hosts.old contains unhashed entries\r\nDelete this file to ensure privacy of hostnames\r\n"
+    },
+    {
+      "command": [
+        "ssh-keygen",
+        "-F",
+        "lab-blue",
+        "-f",
+        "<LAB>/project_known_hosts"
+      ],
+      "status": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "ssh-keygen",
+        "-F",
+        "logical-blue",
+        "-f",
+        "<LAB>/project_known_hosts"
+      ],
+      "status": 0,
+      "stdout": "# Host logical-blue found: line 2 \n|1|0a2fT1FhIUXh2CLfYrjoNic4uAY=|SGjQGBYmY7nLlPdv8kLiQqeIA7s= ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ56i+q2rTNl4DkXLN2KvtHVKcKuCuKj5lm8HEk0miTC disposable-lab-only\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "ssh-keygen",
+        "-R",
+        "logical-blue",
+        "-f",
+        "<LAB>/project_known_hosts"
+      ],
+      "status": 0,
+      "stdout": "# Host logical-blue found: line 2\n<LAB>/project_known_hosts updated.\nOriginal contents retained as <LAB>/project_known_hosts.old\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "ssh-keygen",
+        "-F",
+        "logical-blue",
+        "-f",
+        "<LAB>/project_known_hosts"
+      ],
+      "status": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "ssh-keygen",
+        "-F",
+        "logical-green",
+        "-f",
+        "<LAB>/project_known_hosts"
+      ],
+      "status": 0,
+      "stdout": "# Host logical-green found: line 2 \n|1|OE+Z0hbPEeB6qANtvXemSRMMUG4=|R+c7mzH6D5Y0GFv1sLVTnUsDQxo= ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ56i+q2rTNl4DkXLN2KvtHVKcKuCuKj5lm8HEk0miTC disposable-lab-only\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "ssh-keygen",
+        "-F",
+        "[server.example]:2222",
+        "-f",
+        "<LAB>/project_known_hosts"
+      ],
+      "status": 0,
+      "stdout": "# Host [server.example]:2222 found: line 1 \n|1|DodCR7+JMci8E/IfwHZEb/ZSWWo=|XXgk0TtTyR+cHHNLqP3L//BxGqQ= ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ56i+q2rTNl4DkXLN2KvtHVKcKuCuKj5lm8HEk0miTC disposable-lab-only\n",
+      "stderr": ""
+    }
+  ],
+  "networkConnection": false,
+  "userSSHFiles": false,
+  "nexusGUI": false,
+  "scope": "Controlled OpenSSH config evaluation and disposable known_hosts operations. The alias records are fixture data; no SSH handshake, endpoint identity, certificate policy or GUI trust-store behavior is tested."
+}
