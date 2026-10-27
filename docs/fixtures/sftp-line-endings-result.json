@@ -1,0 +1,59 @@
+{
+  "checkedAt": "2026-10-27T00:07:59.072Z",
+  "platform": "darwin",
+  "openSSH": "OpenSSH_10.3p1, LibreSSL 3.3.6",
+  "method": "local sftp -D over pipes; synthetic script bytes are never executed",
+  "passed": 4,
+  "cases": [
+    {
+      "name": "crlf-upload",
+      "command": "put",
+      "exitCode": 0,
+      "bytes": 30,
+      "sha256": "48373773c2baf21ebd2e05ec5f60b43c9be057fa61145f82f142ae7b0d695f82",
+      "bytePreserved": true,
+      "sourceUnchanged": true,
+      "crlfPairs": 2,
+      "utf8BOM": false
+    },
+    {
+      "name": "crlf-download",
+      "command": "get",
+      "exitCode": 0,
+      "bytes": 30,
+      "sha256": "48373773c2baf21ebd2e05ec5f60b43c9be057fa61145f82f142ae7b0d695f82",
+      "bytePreserved": true,
+      "sourceUnchanged": true,
+      "crlfPairs": 2,
+      "utf8BOM": false
+    },
+    {
+      "name": "prepared-lf-upload",
+      "command": "put",
+      "exitCode": 0,
+      "bytes": 28,
+      "sha256": "5ccb00d9c7f21e9dc6825107fe8651f0c4fd3f91ad39166b004f30431c019255",
+      "bytePreserved": true,
+      "sourceUnchanged": true,
+      "crlfPairs": 0,
+      "utf8BOM": false
+    },
+    {
+      "name": "bom-upload",
+      "command": "put",
+      "exitCode": 0,
+      "bytes": 33,
+      "sha256": "20f0d268a57471c1cc0afa298b81687c1ec1b06242c74b6ded81ca6117ce166d",
+      "bytePreserved": true,
+      "sourceUnchanged": true,
+      "crlfPairs": 2,
+      "utf8BOM": true
+    }
+  ],
+  "crlfAndLFHaveDifferentHashes": true,
+  "network": false,
+  "credentials": false,
+  "nexusGUI": false,
+  "winSCPRuntime": false,
+  "temporaryDataRemoved": true
+}

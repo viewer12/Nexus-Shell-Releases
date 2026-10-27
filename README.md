@@ -38,6 +38,8 @@ Need `rz` / `sz` in an existing SSH session? The [Mac ZMODEM checklist](docs/zmo
 
 Moving from Windows? Use the [WinSCP-to-Mac migration checklist](docs/winscp-to-mac.md) to check SFTP versus FTPS, convert a PuTTY key locally if needed, and validate one file task before moving the rest of your connections.
 
+Did text mode change your file? [Check line endings and the intended baseline](docs/sftp-transfer-check.md#text-mode-line-endings-and-the-baseline), then use the free browser-local two-file comparison for SHA-256 and CRLF/LF-only differences. It needs no account, uploads nothing, and does not modify or execute files. A four-case local OpenSSH experiment is included; it is separate from Nexus Shell GUI compatibility. [日本語](docs/ja/sftp-transfer-check.md#改行と元データを分けて確認する) · [中文](docs/zh-CN/sftp-transfer-check.md#区分文本模式换行与原始基准).
+
 Working with two servers? Follow the [multi-server file checklist](docs/multi-server-files.md) ([中文操作说明](docs/zh-CN/multi-server-files.md)) to stage a copy through your Mac, verify the target, and distinguish session tabs from terminal splits. It also explains the path bar's editing shortcuts.
 
 ## Requirements
