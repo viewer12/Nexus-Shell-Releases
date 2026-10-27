@@ -1,6 +1,18 @@
 # 用无敏感文件检查一次 SFTP 往返传输
 
-Nexus Shell 团队 · 首发2026-10-04 · 更新2026-10-23 · [English](../sftp-transfer-check.md)
+Nexus Shell 团队 · 首发2026-10-04 · 更新2026-10-27 · [English](../sftp-transfer-check.md)
+
+## 区分文本模式、换行与原始基准
+
+2026-10-27补充。WinSCP的[官方转送模式说明](https://winscp.net/eng/docs/transfer_mode)区分Text、Binary、按文件名选择的Automatic以及编辑器设置。换到Mac客户端，不代表旧规则会被导入或脚本会自动转换为LF；不承诺Nexus Shell有相同文本模式开关。
+
+保留原件。脚本出现`^M`或bad interpreter时，分别检查解释器路径和换行；不能把成功上传当作脚本正确。确需LF时，在编辑器中另存一份并审核，以明确准备好的副本为基准，不批量转换二进制、ZIP或生产目录。上传到独立staging路径，再下载到另一个空目录，分别运行`shasum -a 256`比较。原始内容在途中变了，就没有稳定基准；选两次原件不算传输验证。
+
+两份各不超过16 MiB的小型非敏感文件可用[免费本地比对器（英文UI）](https://nexusshell.app/en/guides/winscp-alternative-for-mac/?utm_source=github-releases&utm_medium=repository&utm_campaign=multi_server_files_202609#compare-your-sftp-files)：显示SHA-256及是否仅CRLF/LF字节差异，不上传、持久存储、执行或改写文件。不检测字符编码，不判断哪份正确；原五个合成文件固定校验器保持独立。
+
+[公开源码](../../examples/sftp-line-endings-lab.mjs)及[四项记录](../fixtures/sftp-line-endings-result.json)通过本地`sftp -D`管道确认：CRLF上传/下载保留30字节，另行准备的LF保留28，带UTF-8 BOM上传保留33字节及BOM；均退出0、原件不变。LF/CRLF哈希不同。仓库根目录运行`node examples/sftp-line-endings-lab.mjs`可复现，依赖已有OpenSSH子系统、不自动安装，结束仅清理自身私有临时目录。没有网络、SSH账号、WinSCP运行时、Nexus GUI或商店实测，也不执行合成脚本。权限、额外文件及服务加载仍需另查，原历史实验日期不改。
+
+
 
 [下载免费测试 ZIP](https://nexusshell.app/assets/downloads/sftp-transfer-check.zip)。五个合成文件覆盖空格文件名、中文文件名与 UTF-8 正文、隐藏文件、空文件和二进制数据，附带 SHA-256 清单及中英文说明。可用于任意 SFTP 客户端，不是安装包，无密码、密钥或可执行载荷。测试数据按 CC0-1.0 提供。
 

@@ -1,6 +1,19 @@
 # MacからSFTPで送る前に、保存先と往復転送を確認する
 
-Nexus Shellチーム · 2026年10月12日 · [English](../sftp-transfer-check.md) · [中文](../zh-CN/sftp-transfer-check.md)
+Nexus Shellチーム · 公開2026年10月12日 · 更新2026年10月27日 · [English](../sftp-transfer-check.md) · [中文](../zh-CN/sftp-transfer-check.md)
+
+## 改行と元データを分けて確認する
+
+2026-10-27追記。WinSCPの[公式転送モード](https://winscp.net/eng/docs/transfer_mode)ではText・Binary・ファイル名で選ぶAutomaticと編集時の設定を区別します。別のMacアプリへ移るとき、その設定が自動で移るとは限りません。Nexus Shellの自動LF変換や同じ設定項目を保証する説明ではありません。
+
+1. 元のファイルを保持します。Linuxスクリプトの`^M`やbad interpreterは、改行と先頭のインタープリターのパスを別々に確認します。転送成功は実行できる証拠ではありません。
+2. LFが必要なら、エディタで別コピーを作成して変更を確認し、そのコピーを基準にします。画像・ZIP・本番ディレクトリを一括変換しないでください。
+3. 独立したテスト用パスへ送り、Macの別の空フォルダへ取り戻します。各コピーに`shasum -a 256`を実行し、保持した基準と照合します。転送中に変わる原件や、同じ原件を2回選ぶ方法では確認できません。
+4. 各16 MiB以下の小さな非機密ファイルなら、[ブラウザ内の2ファイル比較（英語UI）](https://nexusshell.app/en/guides/winscp-alternative-for-mac/?utm_source=github-releases&utm_medium=repository&utm_campaign=multi_server_files_202609#compare-your-sftp-files)も使えます。SHA-256とCRLF/LFだけの違いを表示し、ファイルやハッシュを送信・保存しません。実行や変更も行いません。文字コード・正しい版・サーバーは判定せず、元の5ファイル固定検証器とは別です。
+
+[4ケースの記録](../fixtures/sftp-line-endings-result.json)と[ソース](../../examples/sftp-line-endings-lab.mjs)を公開しています。ローカル`sftp -D`でCRLFのアップロードとダウンロードは30バイトのまま、準備したLFは28、UTF-8 BOM付きは33バイトとBOMを維持しました。終了0でもLFとCRLFのハッシュは異なります。既存OpenSSHサブシステムのある環境で、リポジトリのルートから`node examples/sftp-line-endings-lab.mjs`を実行できます。自動インストールせず、自分で作成した一時ディレクトリだけを片付けます。ネットワーク、WinSCP実行、Nexus GUI、App Storeやスクリプト実行の試験ではありません。権限やサービス反映も別に確認してください。元の実験日は変更しません。
+
+
 
 SFTPで接続できても、目的の場所に書き込めるとは限りません。最初は実データを使わず、サーバーの自分専用テストディレクトリへ小さなファイルを送り、Macの別の空フォルダへ取り戻して確認してください。この手順は任意のSFTPクライアントで使えます。製品の購入は必要ありません。
 
