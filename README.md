@@ -83,6 +83,8 @@ SSH works, but **SFTP closes before showing files**? The [startup checklist and 
 
 Try the free [SSH tunnel command builder](https://nexusshell.app/en/tools/ssh-tunnel-command-builder/?utm_source=github-releases&utm_medium=repository&utm_campaign=private_database_202609) to reach a private database or web service with system OpenSSH. It includes copyable client settings and an error-specific verification checklist. The [Mac tunnel walkthrough](docs/ssh-tunnel-workflow.md) ([中文检查步骤](docs/zh-CN/ssh-tunnel-workflow.md)) covers Sequel Ace and DBeaver settings, separate SSH/database addresses, and how to distinguish a listening port from a working service. A [loopback-only TCP/HTTP rehearsal](examples/verify-tunnel-health-layers.mjs) reproduces that distinction without a server account. Nexus Shell can handle the accompanying server terminal and file work; the builder does not configure an app tunnel manager.
 
+If localhost reaches the wrong database or bypasses your forwarded port, [compare IPv4, IPv6 and Unix sockets](docs/ssh-tunnel-workflow.md#localhost-ipv6-and-unix-sockets-can-bypass-the-intended-listener). The walkthrough includes explicit MySQL and psql TCP examples and a [four-case local transport fixture](examples/verify-loopback-transport.mjs); it does not claim database or GUI verification.
+
 ## Agent Bridge
 
 Agent Bridge turns Nexus Shell into a local [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server. Claude Code, Codex, Cursor, and other MCP clients can use connections already stored in Nexus Shell without receiving passwords or private keys.
