@@ -1,0 +1,36 @@
+{
+  "checkedAt": "2026-10-28T00:04:39.025Z",
+  "platform": "darwin",
+  "node": "v25.6.1",
+  "scope": "Node loopback TCP and private Unix socket; not SSH, MySQL, PostgreSQL, GUI or customer-server verification",
+  "localhostAnswersObserved": [
+    {
+      "address": "::1",
+      "family": 6
+    },
+    {
+      "address": "127.0.0.1",
+      "family": 4
+    }
+  ],
+  "dnsOrderClaim": "Observed on this machine only; not a cross-client or macOS-version guarantee",
+  "passed": 4,
+  "results": [
+    {
+      "name": "explicit IPv4 reaches the IPv4 listener",
+      "passed": true
+    },
+    {
+      "name": "same port on IPv6 reaches a different service",
+      "passed": true
+    },
+    {
+      "name": "Unix socket selects another transport, without a TCP port",
+      "passed": true
+    },
+    {
+      "name": "IPv6 refusal can coexist with a working IPv4 listener",
+      "passed": true
+    }
+  ]
+}

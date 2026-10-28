@@ -69,6 +69,32 @@ node examples/verify-tunnel-health-layers.mjs
 
 The [fixture](../examples/verify-tunnel-health-layers.mjs) binds only ephemeral loopback ports, creates a Node TCP relay with a stopped backend and checks HTTP 403, wrong-service 200 and expected-content 200 responses. It requires Node.js 22+ and curl. It cleans up only its own listeners and sockets. The [recorded result](fixtures/tunnel-health-layers-result.json) is dated 2026-10-11. This is not an SSH handshake, real database, customer VPS, macOS sleep or Nexus GUI test. [Chinese steps](zh-CN/ssh-tunnel-workflow.md) explain the same scope.
 
+## Localhost, IPv6 and Unix sockets can bypass the intended listener
+
+The example above listens on IPv4 `127.0.0.1`. A client resolving `localhost` to `::1` is trying another address; the same port on IPv6 can even belong to another service. Compare the client host and local port with `lsof` output before changing the server. Do not disable IPv6, edit `/etc/hosts`, kill unknown processes or expose a wildcard listener to fix an address mismatch. Retain the service's required TLS and certificate hostname configuration.
+
+On Unix, the [MySQL CLI normally chooses a Unix socket for localhost](https://dev.mysql.com/doc/refman/8.4/en/connecting.html); a port option alone does not force TCP. For the MySQL tunnel example, use your installed MySQL client in a second local Terminal:
+
+```sh
+mysql --protocol=TCP --host=127.0.0.1 --port=13306 --user=YOUR_DB_USER --password
+```
+
+Replace YOUR_DB_USER with the database account, then enter its password at the prompt. Update the local port if changed. For PostgreSQL, [libpq can choose a Unix socket when the host is omitted](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-PARAMKEYWORDS). Make the TCP destination explicit in an installed psql client:
+
+```sh
+psql --host=127.0.0.1 --port=15432 --username=YOUR_DB_USER --dbname=YOUR_DB_NAME --password
+```
+
+Replace the database placeholders and retain required TLS settings. The [builder's transport diagnosis](https://nexusshell.app/en/tools/ssh-tunnel-command-builder/#localhost-reaches-the-wrong-service-or-misses-the-tunnel) adapts both examples to the selected port without collecting database credentials. A successful query still needs your normal read-only check that this is the intended database.
+
+Reproduce the transport distinction locally with Node.js 22+:
+
+```sh
+node examples/verify-loopback-transport.mjs
+```
+
+The [script](../examples/verify-loopback-transport.mjs) uses an ephemeral IPv4 port, a distinct IPv6-only listener at the same port, and a private temporary Unix socket, each returning a different marker. It then stops only its IPv6 listener and verifies refusal while IPv4 still works. It closes its own listeners and removes its own temporary socket directory. IPv6 must be available or the script fails visibly. The [recorded result](fixtures/loopback-transport-result.json) includes the observation time and that machine's localhost answers; DNS order is not a universal client guarantee. These four cases test Node transports, not SSH, database protocols, credentials, TLS or the Nexus GUI. MySQL and PostgreSQL behavior above is sourced from their manuals, not this fixture.
+
 ## Continue the server task
 
 Nexus Shell complements your database client with saved SSH connections, terminal sessions, SFTP and Docker inspection. The generated command uses system OpenSSH; this document does not claim a Nexus Shell tunnel-manager feature. The app requires Apple Silicon and macOS 14.2+. Free use is personal and non-commercial; Pro features and commercial use retain their licensing requirements.

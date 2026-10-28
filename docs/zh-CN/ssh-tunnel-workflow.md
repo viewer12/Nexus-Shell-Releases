@@ -44,6 +44,32 @@ node examples/verify-tunnel-health-layers.mjs
 
 [脚本](../../examples/verify-tunnel-health-layers.mjs)只绑定本机临时loopback端口，验证TCP监听成功但后端不可用、HTTP403、错误服务200及预期内容200四种情况。只关闭自己创建的监听与socket。它是Node TCP/HTTP实验，不是SSH握手、真实数据库、客户VPS、Mac休眠或Nexus GUI验收。[英文完整步骤](../ssh-tunnel-workflow.md)。
 
+## localhost、IPv6 和 Unix socket 可能绕过预期监听
+
+此示例绑定Mac的IPv4地址127.0.0.1。客户端若把localhost解析成::1，就在连接另一地址；IPv6上的相同端口甚至可能由另一服务占用。先比较客户端的实际host、local port与lsof的地址，不要先改远端服务器，也不要禁用IPv6、改/etc/hosts、终止陌生进程或开放通配地址。保留服务要求的TLS与证书主机名设置。
+
+Unix上的[MySQL命令行客户端通常为localhost选择Unix socket](https://dev.mysql.com/doc/refman/8.4/en/connecting.html)，单独指定端口并不强制TCP。若已安装MySQL客户端，在第二个Mac本地Terminal使用MySQL示例的本地端口：
+
+```sh
+mysql --protocol=TCP --host=127.0.0.1 --port=13306 --user=YOUR_DB_USER --password
+```
+
+替换数据库账号占位符，在提示时输入密码；修改过本地端口就同步修改。PostgreSQL的[libpq在省略host时可能使用Unix socket](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-PARAMKEYWORDS)，已安装psql时明确指定TCP地址：
+
+```sh
+psql --host=127.0.0.1 --port=15432 --username=YOUR_DB_USER --dbname=YOUR_DB_NAME --password
+```
+
+替换数据库账号与库名，保留TLS要求。[工具中的传输方式诊断](https://nexusshell.app/en/tools/ssh-tunnel-command-builder/#localhost-reaches-the-wrong-service-or-misses-the-tunnel)会随所选本地端口更新示例，不收集数据库凭据。查询成功后，仍要按服务的只读检查确认数据库身份。
+
+可在仓库根目录用Node.js 22+运行：
+
+```sh
+node examples/verify-loopback-transport.mjs
+```
+
+[脚本](../../examples/verify-loopback-transport.mjs)以不同响应标记区分IPv4监听、同端口的IPv6独立服务和临时Unix socket，再验证仅关闭IPv6监听时IPv4仍正常的情况。只关闭自己创建的监听并清理自己的临时socket目录；没有IPv6时明确失败，不伪报通过。[结果](../fixtures/loopback-transport-result.json)保留实际执行时间和该机器的localhost解析结果，不泛化为所有客户端的解析顺序。这四例是Node传输实验，不是SSH、MySQL、PostgreSQL、TLS、真实VPS或Nexus GUI验收；数据库规则依据各自官方手册。
+
 ## 后续服务器维护
 
 数据库客户端负责查询；Nexus Shell负责保存的SSH连接、终端、SFTP与Docker检查。需要Apple Silicon和macOS14.2+；免费层限个人非商业SSH，SFTP等Pro功能和商业用途遵循授权要求。
