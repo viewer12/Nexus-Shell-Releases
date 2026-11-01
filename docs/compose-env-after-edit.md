@@ -50,7 +50,7 @@ Confirm container state, bounded logs, application health and the intended non-s
 
 ## Continue on your Mac
 
-The [remote Docker guide](https://nexusshell.app/en/guides/troubleshoot-remote-docker-from-mac/#compose-env-changed-but-the-container-still-uses-the-old-value) links this to remote editing, logs and an existing server task. Nexus Shell brings those views into one Mac workspace; it does not make a successful file save proof of a deployed change. Apple Silicon and macOS 14.2+ are required. SFTP and Docker management require Pro or an eligible trial. See the [first-session checklist](first-session.md) and [current website pricing](https://nexusshell.app/en/#pricing).
+The [remote Docker guide](https://nexusshell.app/en/guides/troubleshoot-remote-docker-from-mac/?utm_source=github-releases&utm_medium=repository#compose-env-changed-but-the-container-still-uses-the-old-value) links this to remote editing, logs and an existing server task. Nexus Shell brings those views into one Mac workspace; it does not make a successful file save proof of a deployed change. Apple Silicon and macOS 14.2+ are required. SFTP and Docker management require Pro or an eligible trial. See the [first-session checklist](first-session.md) and [current website pricing](https://nexusshell.app/en/?utm_source=github-releases&utm_medium=repository#pricing).
 
 Website Pro is lifetime-only: current US$12.88 launch price, announced new-purchase price US$24.99 from November 7, 2026, 00:00 UTC+8. Existing paid lifetime rights remain unchanged. Registration, a trial or an unpaid checkout does not automatically lock the launch price. App Store lifetime and auto-renewing annual purchases are separate; regional store prices are outside this change.
 
