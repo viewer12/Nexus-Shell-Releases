@@ -24,6 +24,8 @@ Choose your next server task in the [Mac SSH guides and tools](https://nexusshel
 
 Docker reports **no space left on device**? Use the [read-only disk-space checklist](docs/docker-disk-space-checklist.md) to distinguish filesystem capacity, inode exhaustion and VM/LXC allocation before deleting anything. It links to an interactive checklist and the Mac remote-Docker workflow.
 
+Edited a remote Compose `.env`, but the container still uses old values? [Check the upload, Compose inputs and container lifecycle](docs/compose-env-after-edit.md) ([中文](docs/zh-CN/compose-env-after-edit.md)). Nine offline configuration checks separate interpolation from service environment; restarting does not apply changed container configuration.
+
 Container CPU above 100%, or memory showing the host's total? [Compare resource scope and denominators](docs/container-resource-readings.md) ([中文](docs/zh-CN/container-resource-readings.md)), with six reproducible offline counter examples. Website v1.8.0 container monitoring and the installed Store version must be checked separately.
 
 ## First time using Nexus Shell?
