@@ -45,6 +45,7 @@ Run a harmless read-only command such as `uptime` and confirm the intended serve
 
 - **Files:** use the [disposable SFTP test pack](sftp-transfer-check.md), upload to a new directory your account owns, download to another empty Mac directory, and verify against the original manifest. Successful SSH does not establish write permissions. External editing has additional remote-shell requirements; see [permission checks](sftp-write-permissions.md).
 - **Files never appear after login:** use the [SFTP startup checklist and five-case offline experiment](sftp-startup-check.md) to separate EOF, an unavailable subsystem and unexpected protocol output before changing permissions.
+- **Upload succeeds, but the website looks unchanged:** use the [publish-result checklist and local rehearsal](website-publish-check.md). Read back the exact remote file and inspect the actual web response before assuming a cache or re-uploading. Added November 2, 2026; the original checklist and trial dates are unchanged.
 - **Docker:** inspect a container and bounded logs with the [read-only checklist](docker-disk-space-checklist.md). Server-side permissions still apply. Do not delete containers or volumes as a trial exercise.
 - **Long-running work:** follow the [remote tmux rehearsal](remote-jobs.md) before trusting a job to a connection that may drop.
 

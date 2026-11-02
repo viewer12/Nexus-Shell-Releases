@@ -1,0 +1,13 @@
+{
+  "checkedAt": "2026-11-02T00:10:08.088Z",
+  "node": "v25.6.1",
+  "platform": "darwin",
+  "passed": 4,
+  "scope": "temporary filesystem and loopback HTTP only; no SFTP, real CDN, web host, Nexus GUI or application-health test",
+  "results": [
+    {"case":"intended copy exists in inactive staging directory","status":200,"downloadedStagingMatches":true,"httpMatches":false},
+    {"case":"correct active file with deliberately simulated stale response","status":200,"activeFileMatches":true,"httpMatches":false,"simulation":true},
+    {"case":"HTTP 200 serves an application fallback","status":200,"type":"text/html","httpMatches":false},
+    {"case":"fresh route returns the exact expected bytes","status":200,"httpMatches":true,"sha256":"999e165fbb64cf3f7a0dfd01328be568528f5c9ee73c050a0c3afe4e422a9287"}
+  ]
+}
