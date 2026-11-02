@@ -45,6 +45,7 @@ Nexus Shell 团队 · 2026年10月5日 · [English](../first-session.md)
 
 - **文件：**用[临时SFTP测试包](sftp-transfer-check.md)，上传到自己有权限的新测试目录，下载到另一个空目录，与保留的原始清单比对。SSH成功不代表可写文件；外部编辑还有远程shell条件，参考[权限说明（英文）](../sftp-write-permissions.md)。
 - **登录后始终没有文件列表：**先看[SFTP启动分诊与五个离线案例（英文）](../sftp-startup-check.md)，区分连接关闭、子系统不可用和协议中混入文本，再处理文件权限。
+- **上传成功，网站仍旧：**按[发布结果清单与本机演练](website-publish-check.md)取回准确远端文件、查看实际网页响应，再判断路径或缓存，不先反复上传。此项于 2026-11-02 补充，原清单发表日和试用日期不变。
 - **Docker：**按[只读清单（英文）](../docker-disk-space-checklist.md)查看容器和有限日志，服务器权限仍然生效，不为试用而删除容器或卷。
 - **长任务：**先完成[远程tmux演练](remote-jobs.md)，再处理断线后仍需继续的工作。
 

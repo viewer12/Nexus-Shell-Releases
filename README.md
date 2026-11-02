@@ -32,6 +32,8 @@ Container CPU above 100%, or memory showing the host's total? [Compare resource 
 
 Follow the [first-session checklist](docs/first-session.md) ([中文](docs/zh-CN/first-session.md) · [日本語](docs/ja/first-session.md) · [한국어](docs/ko/first-session.md)) to finish website-edition sign-in inside the app, confirm your trial status and verify one server task. Website registration alone is not an app session; App Store users follow Apple's purchase/restore flow instead.
 
+SFTP upload succeeded but the website still shows the old page? [Check the remote copy, active document root and actual HTTP response](docs/website-publish-check.md) ([中文](docs/zh-CN/website-publish-check.md)). A four-case local rehearsal separates an inactive directory, a simulated stale response and an HTTP 200 fallback from the expected bytes; no credentials or real server are used.
+
 Typing with a Chinese or Japanese input method? Website / Homebrew v1.7.14 addresses the second of two rapid presses of the same key occasionally disappearing. The [terminal input checklist](docs/terminal-input-check.md) ([中文](docs/zh-CN/terminal-input-check.md) · [日本語](docs/ja/terminal-input-check.md)) distinguishes this from the earlier Shift-symbol issue, keyboard layout, password echo and paste problems. It includes dummy-text comparisons; check Apple separately for App Store update availability.
 
 ## Moving from WinSCP
