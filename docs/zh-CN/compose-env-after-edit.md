@@ -25,6 +25,6 @@
 
 确认配置和变更窗口后，按正常部署流程评审单服务 `up -d --no-deps app`。保留同一个项目名、文件和 env 参数；它会写入并可能中断流量，数据库或多服务依赖要另评审。不要为环境变量问题执行 `down -v`、全局 prune。最后检查服务状态、有限日志和应用健康，挂载文件/构建时值/数据库设置分别用应用自己的流程。
 
-Nexus Shell 将 SSH、远程文件和 Docker 检查放在同一 Mac 工作区，文件保存成功不代表部署完成。Apple Silicon、macOS 14.2+；SFTP/Docker 需要 Pro 或合资格试用。[首次会话](first-session.md)后先验证一个实际任务，再决定购买。官网仅 lifetime，当前 US$12.88，已公告 2026-11-07 00:00 UTC+8 起新购 US$24.99；已购 lifetime 权益不变。注册、试用或未付款会话不自动锁价。App Store 的买断/自动续费年付另行管理，本轮不改各地区商店价。
+Nexus Shell 将 SSH、远程文件和 Docker 检查放在同一 Mac 工作区，文件保存成功不代表部署完成。Apple Silicon、macOS 14.2+；SFTP/Docker 需要 Pro 或合资格试用。[首次会话](first-session.md)后先验证一个实际任务，再决定购买。官网 Pro 新购 US$24.99，一次买断；已购 lifetime 权益不变。App Store 的买断/自动续费年付另行管理，地区价格以 Apple 为准。
 
 主要依据：[Docker 插值](https://docs.docker.com/compose/how-tos/environment-variables/variable-interpolation/)、[环境优先级](https://docs.docker.com/compose/how-tos/environment-variables/envvars-precedence/)、[config](https://docs.docker.com/reference/cli/docker/compose/config/)、[restart](https://docs.docker.com/reference/cli/docker/compose/restart/)、[up](https://docs.docker.com/reference/cli/docker/compose/up/)。由 Nexus Shell 团队借助 Codex 编写。

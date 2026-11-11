@@ -29,7 +29,7 @@ node docs/fixtures/website-publish-lab.mjs
 
 保留原客户端，按[首次会话清单](first-session.md)确认应用账号与试用，然后先完成[临时文件往返](sftp-transfer-check.md)，再处理真实站点。官网/Homebrew 版需要 Apple Silicon、macOS 14.2+；基础 SSH 限个人非商业免费，SFTP/外部编辑需要 Pro 或合格试用。合格官网新账号一次性七天试用，无需绑卡、不自动扣费。
 
-官网仅 lifetime 买断，当前首发价 US$12.88，公告 2026-11-07 00:00（UTC+8）起新购 US$24.99，已购 lifetime 权益不变、不补差价。注册/试用不自动锁价，[以当前官网购买区为准](https://nexusshell.app/?utm_source=github-releases&utm_medium=repository#pricing)。App Store 买断/自动续费年付按地区条款管理，无需 Nexus 账号、不含 Agent Bridge；不承诺跨渠道授权或连接自动迁移。
+官网 Pro 新购 US$24.99，一次买断。已购 lifetime 权益不变，不补差价。[以当前官网购买区为准](https://nexusshell.app/?utm_source=github-releases&utm_medium=repository#pricing)。App Store 买断/自动续费年付按地区条款管理，无需 Nexus 账号、不含 Agent Bridge；不承诺跨渠道授权或连接自动迁移。
 
 临时编辑副本、同步和保存失败另见[原编辑指南](https://nexusshell.app/en/guides/edit-remote-file-macos-sftp/?utm_source=github-releases&utm_medium=repository#upload-succeeded-but-website-unchanged)。本文不收集服务器资料或上传诊断文件。
 
